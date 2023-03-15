@@ -1,6 +1,41 @@
 """ © Team7 || RiZoeL """
 
 from functions.check_reason import *
+from database import users_db as db
+
+def import_owners():
+   Owners = []
+   for x in db.get_all_owners():
+      Owners.append(x.user_id)
+   return Owners
+
+def import_devs():
+   Devs = []
+   for x in db.get_all_devs():
+      Devs.append(x.user_id)
+   return Devs
+
+def import_sudos():
+   Sudos = []
+   for x in db.get_all_sudos():
+      Owners.append(x.user_id)
+   return Sudos
+
+def import_members():
+   own = import_owners()
+   sud = import_sudos()
+   dev = import_devs()
+   Members = own + sud + dev
+   return Members
+
+"""Members = []
+   for x in db.get_all_owners():
+      Members.append(x.user_id)
+   for x in db.get_all_devs():
+      Members.append(x.user_id)
+   for x in db.get_all_sudos():
+      Members.append(x.user_id)
+   return Members"""
 
 async def get_urp(T7, message):
    args = "".join(message.text.split(maxsplit=1)[1:]).split(" ", 2)
