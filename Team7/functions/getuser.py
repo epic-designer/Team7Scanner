@@ -69,15 +69,7 @@ async def get_urp(T7, message):
 
 async def getuser(T7, message):
    args = "".join(message.text.split(maxsplit=1)[1:]).split(" ", 2)
-   txt = args[1:]
-   if len(txt) == 2:
-      try:
-         user = await T7.get_users(args[0])
-      except Exception as error:
-         await message.reply(f"Error! {error}")
-         return
-
-   elif message.reply_to_message:
+   if message.reply_to_message:
       try:
          user = await T7.get_users(message.reply_to_message.from_user.id)
       except:
@@ -86,6 +78,12 @@ async def getuser(T7, message):
          except Exception as error:
             await message.reply(f"Error! {error}")
             return
+   elif args:
+      try:
+         user = await T7.get_users(args[0])
+      except Exception as error:
+         await message.reply(f"Error! {error}")
+         return
 
    else:
       await message.reply("**Wrong Usage:** Syntax: .scan (user) (ban code only) (single telegraph file/proof link)")
