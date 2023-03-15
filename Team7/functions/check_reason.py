@@ -1,6 +1,6 @@
 import re
 
-async def check_reason(message, reason):
+async def check_reason(reason):
   if re.search("T7x00".lower(), reason.lower()):
      return "T7x00 - Scammer", "R7x00"
   elif re.search("T7x01".lower(), reason.lower()):
