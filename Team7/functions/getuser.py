@@ -68,7 +68,7 @@ async def get_urp(T7, message):
 
 
 async def getuser(T7, message):
-   args = "".join(message.text.split(maxsplit=1)[1:]).split(" ", 2)
+   args = "".join(message.text.split(maxsplit=1)[1:]).split(" ", 1)
    if message.reply_to_message:
       try:
          user = await T7.get_users(message.reply_to_message.from_user.id)
