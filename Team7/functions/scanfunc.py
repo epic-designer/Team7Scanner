@@ -43,9 +43,9 @@ async def scanpass(T7, message, user, reason, proof):
    try:
       to_user_text = f"Hey {user.mention}! \n\n You're Scanned By [Team7](https://t.me/Team7_Support_chats) \n\n Reason: {reason} \n Proof: {proof}"
       if user.username:
-         await assistant.send_message(user.username, to_user_text)
+         await assistant.send_message(user.username, to_user_text, disable_web_page_preview=True)
       else:
-         await assistant.send_message(user.id, to_user_text)
+         await assistant.send_message(user.id, to_user_text, disable_web_page_preview=True)
    except:
       print(f"{user.first_name} is Noob!")
       pass
