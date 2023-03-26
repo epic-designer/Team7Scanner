@@ -33,13 +33,14 @@ async def scanpass(T7: Team7Scanner, message, user, reason, proof):
          except:
             fail += 1
 
-   final_text = f"User {user.mention} in scan list! \n\n cmd passed to `{done}` bots and failed in `{fail}` bots!")
+   final_text = f"User {user.mention} in scan list! \n\n cmd passed to `{done}` bots and failed in `{fail}` bots!"
    await huh.delete()
    await message.reply(final_text, reply_markup=InlineKeyboardMarkup([
                                  [
-                                 InlineKeyboardButton("• Revert •", callback_data=f"revert:{user.id}"),
+                                 InlineKeyboardButton("• Revert •", callback_data=f"revert:{user.id}")
                                  ],
                                  ]
+                                 )
                                  )
    scan_db.scan_user(user.id, reason)
    log_msg = "**#SCAN** \n\n"
