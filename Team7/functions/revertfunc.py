@@ -9,7 +9,7 @@ scan_cmd = """
 Reason: {}
 """
 
-async def scanpass(T7, message, user, reason):
+async def revertpass(T7, message, user, reason):
    if user.username:
       bancmd = scan_cmd.format(user.username, reason)
    else:
