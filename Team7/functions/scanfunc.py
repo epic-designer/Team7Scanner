@@ -1,8 +1,9 @@
 """ © Team7 || RiZoeL """
 
 from database import users_db, scan_db
-from core import assistant, SCAN_LOGS as seven_logs
-from RiZoeLX.functions import delete_reply
+from core import Team7Scanner, assistant, SCAN_LOGS as seven_logs
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from .revertfunc import 
 
 scan_cmd = """
 /gban {} 
@@ -12,7 +13,7 @@ Proof: {}
 Note: user {} is official scanned by Team7 || Red7
 """
 
-async def scanpass(T7, message, user, reason, proof):
+async def scanpass(T7: Team7Scanner, message, user, reason, proof):
    if user.username:
       bancmd = scan_cmd.format(user.username, reason, proof, user.first_name)
    else:
@@ -33,7 +34,13 @@ async def scanpass(T7, message, user, reason, proof):
             fail += 1
 
    final_text = f"User {user.mention} in scan list! \n\n cmd passed to `{done}` bots and failed in `{fail}` bots!")
-   await delete_reply(message, huh, final_text)
+   await huh.delete()
+   await message.reply(final_text, reply_markup=InlineKeyboardMarkup([
+                                 [
+                                 InlineKeyboardButton("• Revert •", callback_data=f"revert:{user.id}"),
+                                 ],
+                                 ]
+                                 )
    scan_db.scan_user(user.id, reason)
    log_msg = "**#SCAN** \n\n"
    log_msg += f"Admin: {message.from_user.mention}\n"
@@ -50,3 +57,10 @@ async def scanpass(T7, message, user, reason, proof):
    except:
       print(f"{user.first_name} is Noob!")
       pass
+
+@Team7Scanner.on_callback_query(filters.regex(r'scan'))
+def scan_callback(T7: Team7Scanner, callback: CallbackQuery):
+    query = callback.data.split(":")
+    admin = callback.from_user
+    message = callback.message
+    if users_db.check_owner(admin.id) or users_db.check_dev (admin.id)
