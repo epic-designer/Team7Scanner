@@ -20,3 +20,11 @@ async def get_time(seconds: int) -> str:
     time_list.reverse()
     up_time += ":".join(time_list)
     return up_time
+
+
+def make_list(str_input):
+    str_list = str_input.split(" ")
+    int_list = []
+    for x in str_list:
+        int_list.append(int(x))
+    return int_list
