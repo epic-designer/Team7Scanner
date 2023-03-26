@@ -1,6 +1,6 @@
 """ © Team7 || RiZoeL """
 
-from database import users_db
+from database import users_db, scan_db
 from core import assistant, SCAN_LOGS as seven_logs
 from RiZoeLX.functions import delete_reply
 
@@ -34,6 +34,7 @@ async def scanpass(T7, message, user, reason, proof):
 
    final_text = f"User {user.mention} in scan list! \n\n cmd passed to `{done}` bots and failed in `{fail}` bots!")
    await delete_reply(message, huh, final_text)
+   scan_db.scan_user(user.id, reason)
    log_msg = "**#SCAN** \n\n"
    log_msg += f"Admin: {message.from_user.mention}\n"
    log_msg += f"User: {user.mention} (`{user.id}`) \n"
