@@ -15,7 +15,7 @@ Proof: {}
 Note: user {} is official scanned by Team7 || Red7
 """
 
-async def scanpass(T7: Team7Scanner, message, user, reason_code, proof):
+async def scanpass(T7, message, user, reason_code, proof):
    reason, red7code = await check_reason(reason_code)
    if user.username:
       bancmd = scan_cmd.format(user.username, reason, proof, user.first_name)
