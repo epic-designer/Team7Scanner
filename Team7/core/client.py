@@ -15,7 +15,7 @@ print("[Team7 INFO]: Got Scanner!")
 
 print("[Team7 INFO]: Defining Assistant......")
 Team7Scanner = Client(
-    'Team7Scanner',
+    'Team7Assistant',
     api_id=API_ID,
     api_hash=API_HASH,
     session_string=SESSION,
