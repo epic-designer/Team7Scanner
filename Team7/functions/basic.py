@@ -1,5 +1,12 @@
 from Team7.database import users_db 
 
+def make_list(str_input):
+    str_list = str_input.split(" ")
+    int_list = []
+    for x in str_list:
+        int_list.append(int(x))
+    return int_list
+
 async def user_in_owners(message, user_id):
    if users_db.check_owner(user_id):
        await message.reply("User is an owner!")
