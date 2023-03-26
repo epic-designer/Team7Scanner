@@ -4,6 +4,8 @@ from database import users_db, scan_db
 from core import Team7Scanner, assistant, SCAN_LOGS as seven_logs
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from .revertfunc import revertcallpass
+from .check_reason import check_reason
+from .redfunc import passcmd_to_red 
 
 scan_cmd = """
 /gban {} 
@@ -13,7 +15,8 @@ Proof: {}
 Note: user {} is official scanned by Team7 || Red7
 """
 
-async def scanpass(T7: Team7Scanner, message, user, reason, proof):
+async def scanpass(T7: Team7Scanner, message, user, reason_code, proof):
+   reason, red7code = await check_reason(reason_code)
    if user.username:
       bancmd = scan_cmd.format(user.username, reason, proof, user.first_name)
    else:
@@ -43,6 +46,11 @@ async def scanpass(T7: Team7Scanner, message, user, reason, proof):
                                  )
                                  )
    scan_db.scan_user(user.id, reason)
+   try:
+      await passcmd_to_red(user, red7code, proof)
+   except Exception as eor:
+      print(f"[Team7 Error]: {str(eor)}")
+      pass
    log_msg = "**#SCAN** \n\n"
    log_msg += f"Admin: {message.from_user.mention}\n"
    log_msg += f"User: {user.mention} (`{user.id}`) \n"
