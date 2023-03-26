@@ -2,7 +2,7 @@
 
 import os, sys, datetime, time
 from Team7.functions import get_time 
-from Team7 import start_time, version, Team7Users, Owner, Devs 
+from Team7 import start_time, Team7Users, Owner, Devs 
 from .import Alive_pic, Alive_buttons
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup
@@ -16,7 +16,7 @@ async def ping(_, e: Message):
    Fuk = await e.reply_text("**Pong !!**")
    end = datetime.datetime.now()
    ms = (end-start).microseconds / 1000
-   await Fuk.edit_text(f"• Red SeveN • \n\n  - ᴘɪɴɢ: `{ms}` ᴍs \n  - ᴜᴘᴛɪᴍᴇ: `{uptime}` \n  - ᴠᴇʀsɪᴏɴ: `{__version__}`")
+   await Fuk.edit_text(f"ᴘɪɴɢ: `{ms}` ᴍs \n  - ᴜᴘᴛɪᴍᴇ: `{uptime}`")
 
 
 @Client.on_message(filters.user(Team7Users) & filters.command(["alive"], ["!", "?", "/", "."]))
@@ -90,10 +90,9 @@ async def stats_(_: Client, e: Message):
     stat += f"  **• Total Devs:** `{users_db.dev_count()}` \n"
     stat += f"  **• Total Red-Sudo:** `{users_db.sudo_count()}` \n"
     stat += f"  **• Total Bots:** `{users_db.bot_count()}` \n\n"
-    stat += f"  **• Total scanned users:** `{gban_db.gban_count()}` \n"
+    stat += f"  **• Total scanned users:** `{gban_db.scan_count()}` \n"
     stat += f"  **• Total reported users:** `{report_db.report_count()}` \n"
-    stat += f"  **• Total tokens generated:** `{token_db.tokens_count()}` \n"
-   
+    
     if ".jpg" in Alive_pic or ".png" in Alive_pic:
        await e.reply_photo(Alive_pic, caption=stat, reply_markup=InlineKeyboardMarkup(Alive_buttons))
     if ".mp4" in Alive_pic or ".MP4," in Alive_pic:
