@@ -28,9 +28,14 @@ async def revertpass(T7, message, user):
          except:
             fail += 1
 
+   scan_db.revert_user(user.id)
    final_text = f"User {user.mention} is Removed from Scanlist! \n\n cmd passed to `{done}` bots and failed in `{fail}` bots!"
    await delete_reply(message, huh, final_text)
-   scan_db.revert_user(user.id)
+   try:
+      await revert_to_red(user)
+   except Exception as er:
+      print(f"[Team7 INFO]: {str(er)}")
+      pass
    log_msg = "**#REVERT** \n\n"
    log_msg += f"Admin: {message.from_user.mention}\n"
    log_msg += f"User: {user.mention} (`{user.id}`) "
