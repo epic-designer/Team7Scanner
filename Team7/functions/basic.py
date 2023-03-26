@@ -18,13 +18,13 @@ async def user_in_devs(message, user_id):
 
 async def user_in_res(message, user_id):
    if user_in_owners(message, user_id):
-       return
+       return True
    if user_in_devs(message, user_id):
-       return
+       return True
    if user_in_sudos(message, user_id):
-       return
+       return True
 
-async owner_dev(message, user_id):
+async def owner_dev(message, user_id):
    if user_in_owners(message, user_id):
        return
    if user_in_devs(message, user_id):
