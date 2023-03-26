@@ -66,7 +66,6 @@ async def get_urp(T7, message):
    else:
       await message.reply("**Wrong Usage:** Syntax: .scan (user) (ban code only) (single telegraph file/proof link)")
 
-
 async def getuser(T7, message):
    args = "".join(message.text.split(maxsplit=1)[1:]).split(" ", 1)
    if message.reply_to_message:
