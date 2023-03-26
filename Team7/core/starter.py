@@ -7,7 +7,7 @@ from RiZoeLX import __version__ as rizoelx_vr
 from .version import __version__
 from .client import Team7Scanner, assistant 
 
-def Start_assistant:
+def Start_assistant():
     try:
         assistant.start()
         print("[Team7 INFO]: Scanner Assistant started")
