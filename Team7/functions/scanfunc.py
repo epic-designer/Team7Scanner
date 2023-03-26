@@ -3,7 +3,7 @@
 from database import users_db, scan_db
 from core import Team7Scanner, assistant, SCAN_LOGS as seven_logs
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
-from .revertfunc import 
+from .revertfunc import revertcallpass
 
 scan_cmd = """
 /gban {} 
@@ -58,9 +58,14 @@ async def scanpass(T7: Team7Scanner, message, user, reason, proof):
       print(f"{user.first_name} is Noob!")
       pass
 
-@Team7Scanner.on_callback_query(filters.regex(r'scan'))
+
+@Team7Scanner.on_callback_query(filters.regex(r'revert'))
 def scan_callback(T7: Team7Scanner, callback: CallbackQuery):
     query = callback.data.split(":")
     admin = callback.from_user
     message = callback.message
-    if users_db.check_owner(admin.id) or users_db.check_dev (admin.id)
+    if users_db.check_owner(admin.id) or users_db.check_dev(admin.id):
+       user = await T7.get_users(query[1])
+       await revertcallpass(T7, callback, user)
+    else:
+       await callback.answer("Only Team7Scanne's Owner and Devs can!") 
