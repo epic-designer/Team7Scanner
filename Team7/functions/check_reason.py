@@ -1,10 +1,8 @@
 import re
 
 async def check_reason(reason):
-  if re.search("T7x00".lower(), reason.lower()):
-     return "T7x00 - Scammer", "R7x00"
-  elif re.search("T7x01".lower(), reason.lower()):
-     return "T7x01 - Mass Adding Member", "R7x01"
+  if re.search("T7x01".lower(), reason.lower()):
+     return "T7x01 - Scammer", "R7x01"
   elif re.search("T7x02".lower(), reason.lower()):
      return "T7x02 - Child Abuse", "R7x02"
   elif re.search("T7x03".lower(), reason.lower()):
@@ -45,8 +43,7 @@ async def check_reason(reason):
 
 Bancodestext = """
 **Team7 Reason/Bancodes!**
- • {`T7x00`} - Scammer
- • {`T7x01`} - Mass Adding Member
+ • {`T7x01`} - Scammer
  • {`T7x02`} - Child Abuse
  • {`T7x03`} - Illegal
  • {`T7x04`} - Fraud Promotion (Any Kind)
