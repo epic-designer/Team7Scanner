@@ -2,7 +2,7 @@
 
 from pyrogram import Clients, filters
 from pyrogram.types import Message, InlineKeyboardMarkup
-from core import start_msg, start_buttons, about_msg, about_buttons, help_msg, alive_buttons
+from Team7.core import start_msg, start_buttons, about_msg, about_buttons, help_msg, alive_buttons
 
 PIC = ""
 GRP_PIC = ""
