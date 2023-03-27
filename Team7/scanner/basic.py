@@ -3,7 +3,7 @@
 import os, sys, datetime, time
 from Team7.functions import get_time 
 from Team7 import start_time, Team7Users, Owner, Devs 
-from .import Alive_pic, Alive_buttons
+from Team7.core import alive_pic, alive_buttons, alive_msg
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup
 from seven.db import gban_db, users_db, report_db
@@ -21,10 +21,10 @@ async def ping(_, e: Message):
 
 @Client.on_message(filters.user(Team7Users) & filters.command(["alive"], ["!", "?", "/", "."]))
 async def alive(_, e: Message):
-    if ".jpg" in Alive_pic or ".png" in Alive_pic:
-       await e.reply_photo(Alive_pic, caption=Alive_msg, reply_markup=InlineKeyboardMarkup(Alive_buttons))
-    if ".mp4" in Alive_pic or ".MP4," in Alive_pic:
-       await e.reply_video(Alive_pic, caption=Alive_msg, reply_markup=InlineKeyboardMarkup(Alive_buttons))
+    if ".jpg" in alive_pic or ".png" in alive_pic:
+       await e.reply_photo(alive_pic, caption=alive_msg, reply_markup=InlineKeyboardMarkup(alive_buttons))
+    if ".mp4" in alive_pic or ".MP4," in alive_pic:
+       await e.reply_video(alive_pic, caption=alive_msg, reply_markup=InlineKeyboardMarkup(alive_buttons))
 
 
 @Client.on_message(filters.user(Owner) & filters.command(["restart"], ["!", "?", "/", "."]))
@@ -33,7 +33,7 @@ async def restart(Team7: Client, message: Message):
      reboot_text = "**Re-starting** \n\n__Wait For A While To Use it Again__ "
      await message.repky(reboot_text)
      try:
-         Team7.disconnect()
+         await Team7.disconnect()
      except Exception as e:
          pass
      args = [sys.executable, "-m", "Team7"]
