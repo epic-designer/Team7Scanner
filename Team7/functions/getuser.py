@@ -86,3 +86,38 @@ async def getuser(T7, message):
 
    else:
       await message.reply("**Wrong Usage:** Syntax: .scan (user) (ban code only) (single telegraph file/proof link)")
+
+async def getuser_extra(T7, message):
+   args = "".join(message.text.split(maxsplit=1)[1:]).split(" ", 1)
+
+   if message.reply_to_message:
+      try:
+         user = await T7.get_users(message.reply_to_message.from_user.id)
+      except:
+         try:
+            user = message.reply_to_message.from_user
+         except Exception as error:
+            await message.reply(f"Error! {error}")
+            return
+      try
+         extra = await T7.get_users(args[0])
+      except Exception as er:
+         await message.reply(f"Error! {er}")
+         return
+      return user, extra
+
+   if len(args) == 2:
+      try:
+         user = await T7.get_users(args[0])
+      except Exception as error:
+         await message.reply(f"Error! {error}")
+         return
+      try
+         extra = await T7.get_users(args[1])
+      except Exception as er:
+         await message.reply(f"Error! {er}")
+         return
+      return user, extra
+
+   else:
+      await message.reply("Error! This cmd need 2 values")
