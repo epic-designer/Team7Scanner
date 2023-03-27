@@ -6,7 +6,7 @@ from Team7 import start_time, Team7Users, Owner, Devs
 from Team7.core import alive_pic, alive_buttons, alive_msg
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup
-from seven.db import gban_db, users_db, report_db
+from Team7.database import scan_db, users_db, report_db
 
 
 @Client.on_message(filters.user(Team7Users) & filters.command(["ping"], ["!", "?", "/", "."]))
@@ -90,7 +90,7 @@ async def stats_(_: Client, e: Message):
     stat += f"  **• Total Devs:** `{users_db.dev_count()}` \n"
     stat += f"  **• Total Red-Sudo:** `{users_db.sudo_count()}` \n"
     stat += f"  **• Total Bots:** `{users_db.bot_count()}` \n\n"
-    stat += f"  **• Total scanned users:** `{gban_db.scan_count()}` \n"
+    stat += f"  **• Total scanned users:** `{scan_db.scan_count()}` \n"
     stat += f"  **• Total reported users:** `{report_db.report_count()}` \n"
     
     if ".jpg" in Alive_pic or ".png" in Alive_pic:
