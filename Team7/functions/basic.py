@@ -4,7 +4,7 @@ from Team7.core import Team7Scanner
 
 async def itsme(message, user_id):
     me = await Team7Scanner.get_me()
-    id user_id == me.id:
+    if user_id == me.id:
        await message.reply("Noob 😑 It's mee!")
        return True
 
