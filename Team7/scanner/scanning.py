@@ -1,7 +1,7 @@
 """ Team7 || RiZoeL """
 
 import re
-from Team7 import Team7Users
+from . import Team7Users
 from Team7.functions import scanpass, revertpass, get_urp, getuser, user_in_res, check_reason, rcodes
 from pyrogram import filters, Client
 from pyrogram.types import Message 
