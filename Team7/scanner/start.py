@@ -28,4 +28,5 @@ async def help_(_, message: Message):
 
 @Client.on_message(filters.command(["about"], ["!", "/"]))
 async def about_(_, message: Message):
-    await message.reply(about_msg, reply_markup=InlineKeyboardMarkup(about_buttons))
+   if message.from_user.id == message.chat.id:
+      await message.reply(about_msg, reply_markup=InlineKeyboardMarkup(about_buttons))
