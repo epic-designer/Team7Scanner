@@ -1,7 +1,7 @@
 """ © Team7 || RiZoeL """
 
 from functions.check_reason import *
-from database import users_db as db
+from Team7.database import users_db as db
 
 def import_owners():
    Owners = []
