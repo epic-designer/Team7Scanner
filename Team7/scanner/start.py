@@ -25,3 +25,7 @@ async def start_(_, message: Message):
 @Client.on_message(filters.command(["help"], ["!", "/"]))
 async def help_(_, message: Message):
     await message.reply(help_msg, reply_markup=InlineKeyboardMarkup(alive_buttons))
+
+@Client.on_message(filters.command(["about"], ["!", "/"]))
+async def about_(_, message: Message):
+    await message.reply(about_msg, reply_markup=InlineKeyboardMarkup(about_buttons))
