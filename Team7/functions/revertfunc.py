@@ -1,7 +1,7 @@
 """ © Team7 || RiZoeL """
 
-from database import users_db, scan_db
-from core import assistant, SCAN_LOGS as seven_logs
+from Team7.database import users_db, scan_db
+from Team7.core import assistant, SCAN_LOGS as seven_logs
 from RiZoeLX.functions import delete_reply
 
 scan_cmd = """
