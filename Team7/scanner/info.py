@@ -4,7 +4,16 @@ from Team7.database import users_db, scan_db, report_db
 from pyrogram import filters, Client
 from pyrogram.types import Message
 
-@Client.on_message(filters.command(["info"], ["!", "?", "/", "."]))
+
+async def itt7(message, user):
+   me = await Client.get_me()
+   if user.id == me.id:
+      Msg = "**It's me! Team7's Scanner!** \n\n"
+      Msg += "  • I'm An advance and fast pyrogram based scanner! \n" 
+      await message.reply(Msg)
+      return True 
+
+@Client.on_message(filters.command(["info", "tinfo"], ["!", "?", "/", "."]))
 async def seven_info(T7: Client, e: Message):
    """ Info only owner, devs & bot owners can """
    txt = "".join(e.text.split(maxsplit=1)[1:]).split(" ", 1)
@@ -32,6 +41,9 @@ async def seven_info(T7: Client, e: Message):
          except Exception as eor:
             await e.reply(str(eor))
             return
+
+   if await itt7(e, user):
+      return 
 
    msg = "**User INFO!** \n\n"
    msg += "===================\n"
