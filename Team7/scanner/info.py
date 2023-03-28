@@ -50,7 +50,7 @@ async def seven_info(T7: Client, e: Message):
       msg += "**Rank:** 7-Sudo 👤 \n"
    if scan_db.is_gbanned(int(user.id)):
       msg += "**Scanned user: Yes!** \n"
-   if report_db.check_report(user.id)
+   if report_db.check_report(user.id):
       msg += "**User in Report list!** \n"
    msg += "==================="
    await e.reply_text(msg)
