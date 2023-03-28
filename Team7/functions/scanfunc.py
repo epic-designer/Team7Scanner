@@ -69,7 +69,7 @@ async def scanpass(T7, message, user, reason_code, proof):
 
 
 @Team7Scanner.on_callback_query(filters.regex(r'revert'))
-def scan_callback(T7: Team7Scanner, callback: CallbackQuery):
+async def scan_callback(T7: Team7Scanner, callback: CallbackQuery):
     query = callback.data.split(":")
     admin = callback.from_user
     message = callback.message
