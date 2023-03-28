@@ -25,7 +25,7 @@ async def seven_info(T7: Client, e: Message):
          return
    else:
       try:
-         user = await red.get_users(e.from_user.id)
+         user = await T7.get_users(e.from_user.id)
       except:
          try:
             user = e.from_user
