@@ -103,7 +103,7 @@ async def scanlist(T7: Client, e: Message):
 
           
 @Client.on_message(filters.user(Team7Users) & filters.command(["reportlist"], ["!", "?", "/", "."]))
-async def reportlist(red: Client, e: Message):
+async def reportlist(T7: Client, e: Message):
    hey = await e.reply("collecting....")
    data = report_db.get_all_reports()
    reportlist = "• All Current scanned users in Red Seven \n\n"
@@ -112,7 +112,7 @@ async def reportlist(red: Client, e: Message):
          reportlist += f"  - {usr.report_user_id}, reported by {usr.user_id} \n"
      with io.BytesIO(str.encode(reportlist)) as out_file:
          out_file.name = "Report list.txt"
-         await red.send_document(
+         await T7.send_document(
                chat_id=e.chat.id,
                document=out_file,
                thumb="seven/Red7.jpg",
