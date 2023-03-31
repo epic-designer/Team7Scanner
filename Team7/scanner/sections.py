@@ -43,7 +43,7 @@ async def add_user(T7: Client, message: Message):
    db.add_user(user.id, bot.username)
    db.add_bot(bot.id, bot.username)
    await message.reply_text(f"User {user.mention} is successfully added in sudo list 👤-!")
-   Logs = "**#NEW REDSUDO**\n\n"
+   Logs = "**#NEW SUDO**\n\n"
    Logs += f"**× Admin:** {message.from_user.mention} (`{message.from_user.id}`)\n"
    Logs += f"**× User:** {user.mention} (`{user.id}`) \n"
    Logs += f"**× Bot:** @{bot.username}"
