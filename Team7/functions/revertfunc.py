@@ -2,6 +2,7 @@
 
 from Team7.database import users_db, scan_db
 from Team7.core import assistant, SCAN_LOGS as seven_logs
+from .redfunc import revert_to_red
 from RiZoeLX.functions import delete_reply
 
 scan_cmd = """
@@ -65,6 +66,11 @@ async def revertcallpass(T7, callback, user):
        await callback.edit_message_text(f"User {user.mention} is Removed from Scanlist! \n\n cmd passed to `{done}` bots and failed in `{fail}` bots!")
    except Exception:
        await callback.delete()
+   try:
+      await revert_to_red(user)
+   except Exception as er:
+      print(f"[Team7 INFO]: {str(er)}")
+      pass
    scan_db.revert_user(user.id)
    log_msg = "**#REVERT** \n\n"
    log_msg += f"Admin: {callback.from_user.mention}\n"
