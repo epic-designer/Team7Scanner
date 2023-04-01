@@ -14,6 +14,7 @@ async def T7callbacks(T7: Client, callback_query: CallbackQuery):
    message = callback_query.message
    if query == "do_report":
       await report_user_query(T7, message)
+
    elif query == "reject_report":
       if users_db.check_owner(admin.id) or users_db.check_dev(admin.id):
          try:
@@ -21,5 +22,7 @@ async def T7callbacks(T7: Client, callback_query: CallbackQuery):
          except Exception:
              await callback_query.delete()
       else:
-         await callback_query.answer("Only Team7's devs can!")
+         await callback_query.answer("Only Team7's devs can!", show_alert=True)
 
+   elif query == "ping":
+      
