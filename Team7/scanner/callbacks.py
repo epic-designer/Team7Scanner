@@ -12,7 +12,7 @@ async def T7callbacks(T7: Client, callback_query: CallbackQuery):
    chat = callback_query.message.chat
    admin = callback_query.from_user
    message = callback_query.message
-   if query == "do_repor":
+   if query == "do_report":
       await report_user_query(T7, message)
    elif query == "reject_report":
       if users_db.check_owner(admin.id) or users_db.check_dev(admin.id):
