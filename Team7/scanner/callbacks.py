@@ -1,7 +1,9 @@
 """ © Team7 RiZoeL """
+import time, datetime
 
 from Team7.database import users_db
-from Team7.funtions import report_user_query
+from Team7.funtions import report_user_query, get_time
+from Team7.core import alive_msg, stats_msg
 
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
@@ -25,4 +27,17 @@ async def T7callbacks(T7: Client, callback_query: CallbackQuery):
          await callback_query.answer("Only Team7's devs can!", show_alert=True)
 
    elif query == "ping":
-      
+      start = datetime.datetime.now()
+      uptime = await get_time((time.time() - start_time))
+      end = datetime.datetime.now()
+      ms = (end-start).microseconds / 1000
+      await callback_query.answer(f"**Team7 Scanner Here!** \n\n Ping: {ms}ms \n Uptime: {uptime}", show_alert=True)
+
+   elif query == "alive":
+      await callback_query.answer(alive_msg, show_alert=True)
+
+   elif query == "stats":
+      await callback_query.answer(stats_msg, show_alert=True)
+
+   
+
