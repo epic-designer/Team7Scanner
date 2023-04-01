@@ -17,4 +17,6 @@ async def T7callbacks(T7: Client, callback_query: CallbackQuery):
              await callback_query.edit_message_text(f"**Report Rejected By admin {admin.mention}!**")
          except Exception:
              await callback_query.delete()
-   
+      else:
+         await callback_query.answer("Only Team7's devs can!")
+
