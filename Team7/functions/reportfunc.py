@@ -1,9 +1,12 @@
-from Team7.database import report_db
 from .check_reason import check_reason
 from .basic import user_in_res
+from .scanfunc import scancallpass
+
 from Team7.core import Team7Scanner, assistant, user_errors, SCAN_LOGS 
+from Team7.database import report_db
+
 from pyrogram import filters
-from pyrogram.types import Message 
+from pyrogram.types import Message, CallbackQuery
 
 async def cancelled(msg):
     if "/cancel" in msg.text:
@@ -50,7 +53,7 @@ async def report_user_query(T7: Team7Scanner, message: Message):
    report_btn = [
                 [ InlineKeyboardButton("• Scan/Accept •", callback_data=f"report_accept:{user.id}:{reason_code}:{proof}")
                 ], [
-                  InlineKeyboardButton("• Scan/Accept •", callback_data=f"report_reject:{user.id}:{reason_code}:{proof}")
+                  InlineKeyboardButton("• Scan/Accept •", callback_data=f"report_reject")
                 ],
                 ]
    report_logs = "#REPORT! \n\n"
@@ -60,9 +63,17 @@ async def report_user_query(T7: Team7Scanner, message: Message):
    report_logs += f"**Proof:** `{proof}`"
    await T7.send_message(SCAN_LOGS, report_logs, reply_markup=InlineKeyboardMarkup(report_btn))
    await T7.send_message(user.id, f"User {report_user.mention} now in report list of Team7-scanner")
-   
-@Client.on_callback_query(filters.regex(r'scan'))
-def reportcallback(T7: Team7, callback: CallbackQuery):
+
+
+@Team7Scanner.on_callback_query(filters.regex(r'report_accept'))
+async def scan_callback(T7: Team7Scanner, callback: CallbackQuery):
     query = callback.data.split(":")
-    chat = callback.from_user.id
-    message = callback.message.id
+    admin = callback.from_user
+    message = callback.message
+    if users_db.check_owner(admin.id) or users_db.check_dev(admin.id):
+       user = await T7.get_users(query[0])
+       reason = query[1]
+       proof = query[2]
+       await scancallpass(T7, callback, user, reason, proof)
+    else:
+       await callback.answer("Only Team7Scanne's Devs can!") 
