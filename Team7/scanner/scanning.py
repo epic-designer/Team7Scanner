@@ -6,7 +6,7 @@ from Team7.functions import scanpass, revertpass, get_urp, getuser, user_in_res,
 from pyrogram import filters, Client
 from pyrogram.types import Message 
 
-@Client.on_message(filters.user(Team7Users) & filters.command(["ping"], ["!", "?", "/", "."]))
+@Client.on_message(filters.user(Team7Users) & filters.command(["scan"], ["!", "?", "/", "."]))
 async def scan_user(Team7: Client, message: Message):
     user, re, pr = await get_urp(Team7, message)
     if not user:
@@ -25,8 +25,8 @@ async def scan_user(Team7: Client, message: Message):
         return
     await scanpass(Team7, message, user, re, proof)
 
-@Client.on_message(filters.user(Team7Users) & filters.command(["ping"], ["!", "?", "/", "."]))
-async def scan_user(Team7: Client, message: Message):
+@Client.on_message(filters.user(Team7Users) & filters.command(["revert"], ["!", "?", "/", "."]))
+async def revert_user(Team7: Client, message: Message):
     user = getuser(Team7, message)
     if not user:
         return 
