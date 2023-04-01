@@ -2,6 +2,7 @@
 
 from functions.check_reason import *
 from Team7.database import users_db as db
+from Team7.core import user_errors 
 
 def import_owners():
    Owners = []
@@ -44,7 +45,8 @@ async def get_urp(T7, message):
       try:
          user = await T7.get_users(args[0])
       except Exception as error:
-         await message.reply(f"Error! {error}")
+         eror = user_errors(str(error))
+         await message.reply(str(eror))
          return
       reason = txt[0]
       proof = str(txt[1])
@@ -74,16 +76,16 @@ async def getuser(T7, message):
       except:
          try:
             user = message.reply_to_message.from_user
-         except Exception as error:
-            await message.reply(f"Error! {error}")
+         except Exception as eror:
+            error = user_errors(str(eror))
+            await message.reply(str(error))
             return
    elif args:
       try:
          user = await T7.get_users(args[0])
       except Exception as error:
-         await message.reply(f"Error! {error}")
+         await message.reply(str(error))
          return
-
    else:
       await message.reply("You need to specify an user!")
 
@@ -96,26 +98,29 @@ async def getuser_extra(T7, message):
       except:
          try:
             user = message.reply_to_message.from_user
-         except Exception as error:
-            await message.reply(f"Error! {error}")
+         except Exception as eror:
+            await message.reply(str(eror))
             return
-      try
+      try:
          extra = await T7.get_users(args[0])
       except Exception as er:
-         await message.reply(f"Error! {er}")
+         error = user_errors(str(er))
+         await message.reply(str(error))
          return
       return user, extra
 
    if len(args) == 2:
       try:
          user = await T7.get_users(args[0])
-      except Exception as error:
-         await message.reply(f"Error! {error}")
+      except Exception as eror:
+         error = user_errors(str(eror))
+         await message.reply(str(error))
          return
       try
          extra = await T7.get_users(args[1])
       except Exception as er:
-         await message.reply(f"Error! {er}")
+         error = user_errors(str(er))
+         await message.reply(str(error))
          return
       return user, extra
 
