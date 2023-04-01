@@ -33,7 +33,7 @@ asyn def report_user_query(T7: Team7Scanner, message: Message):
       if '[400 PEER_ID_INVALID]' in str(eror):
          await ask_user.repky("Forward any message of user and type /id replying that message! \nThen try again ✓")
          return
-      error = user_errors(str(error))
+      error = user_errors(str(eror))
       await message.reply(str(error))
    ask_reason = await T7.ask(user.id, "Now Gime Reason code! Type /bancodes to get all reason codes!", filters.text)
    check_code, _ = await check_reason(ask_reason.text)
