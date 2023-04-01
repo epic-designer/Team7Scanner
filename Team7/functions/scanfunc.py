@@ -113,4 +113,4 @@ async def scan_callback(T7: Team7Scanner, callback: CallbackQuery):
        user = await T7.get_users(query[1])
        await revertcallpass(T7, callback, user)
     else:
-       await callback.answer("Only Team7Scanne's Owner and Devs can!") 
+       await callback.answer("Only Team7Scanne's Owner and Devs can!", show_alert=True)
