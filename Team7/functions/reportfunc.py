@@ -18,7 +18,7 @@ async def cancelled(msg):
     else:
         return False
 
-asyn def report_user_query(T7: Team7Scanner, message: Message):
+async def report_user_query(T7: Team7Scanner, message: Message):
    chat = message.chat
    user = message.from_user
    ask_user = await T7.ask(user.id, "Gime username or user id of user!", filters=filters.text)
