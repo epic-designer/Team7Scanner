@@ -3,8 +3,7 @@ from .check_reason import check_reason
 from .basic import user_in_res
 from Team7.core import Team7Scanner, assistant, user_errors, SCAN_LOGS 
 from pyrogram import filters
-from pyrogram.types import
-
+from pyrogram.types import Message 
 
 async def cancelled(msg):
     if "/cancel" in msg.text:
@@ -13,7 +12,7 @@ async def cancelled(msg):
     elif "/restart" in msg.text:
         await msg.reply("Restarted the Bot!", quote=True)
         return True
-    elif msg.text.startswith("/"):  # Bot Commands
+    elif msg.text.startswith("/"):
         await msg.reply("Cancelled the generation process!", quote=True)
         return True
     else:
