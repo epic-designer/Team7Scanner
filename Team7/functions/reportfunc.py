@@ -61,3 +61,8 @@ async def report_user_query(T7: Team7Scanner, message: Message):
    await T7.send_message(SCAN_LOGS, report_logs, reply_markup=InlineKeyboardMarkup(report_btn))
    await T7.send_message(user.id, f"User {report_user.mention} now in report list of Team7-scanner")
    
+@Client.on_callback_query(filters.regex(r'scan'))
+def reportcallback(T7: Team7, callback: CallbackQuery):
+    query = callback.data.split(":")
+    chat = callback.from_user.id
+    message = callback.message.id
