@@ -38,12 +38,16 @@ async def report_user_query(T7: Team7Scanner, message: Message):
       error = user_errors(str(eror))
       await message.reply(str(error))
    ask_reason = await T7.ask(user.id, "Now Gime Reason code! Type /bancodes to get all reason codes!", filters.text)
+   if await cancelled(ask_reason):
+      return
    check_code, _ = await check_reason(ask_reason.text)
    if check_code == "Null":
       await ask_reason.reply(f"Eh! `{ask_reason.text}` is wrong bancode! Type /bancodes to get all bancodes!")
       return
    reason_code = ask_reason.text
    ask_proof = await T7.ask(user.id, "Now Gime proof (single telegraph link)", filters.text)
+   if await cancelled(ask_proof):
+      return
    pr = ask_proof.text
    if pr.startswith("https://telegra.ph/file") or pr.startswith("https://telegra.ph") or pr.startswith("https://graph.org") or pr.startswith("https://graph.org/file"):
        proof = str(pr)
@@ -76,4 +80,4 @@ async def scan_callback(T7: Team7Scanner, callback: CallbackQuery):
        proof = query[2]
        await scancallpass(T7, callback, user, reason, proof)
     else:
-       await callback.answer("Only Team7Scanne's Devs can!") 
+       await callback.answer("Only Team7Scanne's Devs can!", show_alert=True) 
