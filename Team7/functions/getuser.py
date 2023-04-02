@@ -116,7 +116,7 @@ async def getuser_extra(T7, message):
          error = user_errors(str(eror))
          await message.reply(str(error))
          return
-      try
+      try:
          extra = await T7.get_users(args[1])
       except Exception as er:
          error = user_errors(str(er))
