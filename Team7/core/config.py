@@ -77,3 +77,6 @@ if DB_URL:
 else:
    print("[Team7 INFO]: You didn't fill DATABASE_URL")
    sys.exit()
+
+Channel = "TheRiZoeL"
+Support = "TheRiZoeL"
