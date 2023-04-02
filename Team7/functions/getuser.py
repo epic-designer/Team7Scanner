@@ -1,6 +1,5 @@
 """ © Team7 || RiZoeL """
 
-from functions.check_reason import *
 from Team7.database import users_db as db
 from Team7.core.errors import user_errors 
 
