@@ -32,7 +32,7 @@ async def team7bruh_(_, message: Message):
    final_text = "**Team7 Info** \n"
    final_text += "<===================> \n"
    user = message.from_user
-   hui2 = await delete_reply(message, hui, "getting user details...")
+   await hui.edit_text("getting user details...")
    final_text += f"  **Your Name:** {user.first_name} \n"
    final_text += f"  **Your ID:** `{user.id}` \n"
    if users_db.check_owner(user.id):
@@ -41,20 +41,20 @@ async def team7bruh_(_, message: Message):
       final_text += f"  **Your Rank:** Dev ⚜️ \n"
    else:
       final_text += f"  **Your Rank:** Sudo 〽️ \n"
-   hui3 = await delete_reply(message, hui2, ".....!")
-   hui4 = await delete_reply(message, hui3, "fetching versions...")
+   hui.edit_text(".....!")
+   hui.edit_text("fetching versions...")
    final_text += f"  **Team7-scanner Ver:** `{__version__}` \n"
    final_text += f"  **Python ver:** `{platform.python_version()}` \n"
    final_text += f"  **pyrogram ver:** `{pyro_vr}` \n"
    final_text += f"  **pyRiZoeLX ver:** `{rizoelx_vr}` \n"
-   hui5 = await delete_reply(message, hui4, "...!...")
-   hui6 = await delete_reply(message, hui5, "checking ping...")
+   hui.edit_text("...!...")
+   hui.edit_text("checking ping...")
    final_text += "<===================> \n\n"
-   hui7 = await delete_reply(message, hui6, "......")
+   hui.edit_text("......")
    final_text += "**Powered By Team7!** \n"
-   hui8 = await delete_reply(message, hui7, "Team7 is alive....")
-   hui9 = await delete_reply(message, hui8, "Team7 Scanner....")
-   hui10 = await delete_reply(message, hui9, "Ready....")
+   hui.edit_text("Team7 is alive....")
+   hui.edit_text("Team7 Scanner....")
+   hui.edit_text("Ready....")
    buttons = [ [
               InlineKeyboardButton(
                     "× Alive", callback_data="alive"),
@@ -72,6 +72,6 @@ async def team7bruh_(_, message: Message):
                     " Support ×", url=f"https://t.me/{Support}")
              ],
              ]
-   await hui10.delete()
+   await hui.delete()
    await message.reply(final_text, reply_markup=InlineKeyboardMarkup(buttons))
     
