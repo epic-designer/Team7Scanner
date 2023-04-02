@@ -41,7 +41,7 @@ async def T7callbacks(T7: Client, callback_query: CallbackQuery):
       await callback_query.answer(inline_alive_msg, show_alert=True)
 
    elif query == "stats":
-      await callback_query.answer(get_stats(), show_alert=True)
+      await callback_query.answer(get_inline_stats(), show_alert=True)
 
    
 
