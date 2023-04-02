@@ -44,6 +44,5 @@ else:
    print("[Team7 INFO]: Got OWNER_IDS")
 
 DEVS = make_list(os.getenv("DEVS", ""))
-SUDO_USERS = make_list(os.getenv("SUDO_USERS", ""))
 SCAN_LOGS = os.getenv("SCAN_LOGS", "")
 SEVEN_LOGS = os.getenv("SEVEN_LOGS", "")
