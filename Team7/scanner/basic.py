@@ -3,7 +3,7 @@
 import os, sys, datetime, time
 from Team7.functions import get_time 
 from Team7 import start_time, Team7Users, Owner, Devs 
-from Team7.core import alive_pic, alive_buttons, alive_msg
+from Team7.core import alive_pic, alive_buttons, alive_msg, get_stats, stats_buttons
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup
 from Team7.database import scan_db, users_db, report_db
@@ -86,14 +86,7 @@ async def getid(client: Client, message: Message):
 # stats
 @Client.on_message(filters.user(Team7Users) & filters.command(["stats"], ["!", "?", "/", "."]))
 async def stats_(_: Client, e: Message):
-    stat = "**Red7 - Scanner's current stats** \n\n"
-    stat += f"  **• Total Devs:** `{users_db.dev_count()}` \n"
-    stat += f"  **• Total Red-Sudo:** `{users_db.sudo_count()}` \n"
-    stat += f"  **• Total Bots:** `{users_db.bot_count()}` \n\n"
-    stat += f"  **• Total scanned users:** `{scan_db.scan_count()}` \n"
-    stat += f"  **• Total reported users:** `{report_db.report_count()}` \n"
-    
-    if ".jpg" in Alive_pic or ".png" in Alive_pic:
-       await e.reply_photo(Alive_pic, caption=stat, reply_markup=InlineKeyboardMarkup(Alive_buttons))
-    if ".mp4" in Alive_pic or ".MP4," in Alive_pic:
-       await e.reply_video(Alive_pic, caption=stat, reply_markup=InlineKeyboardMarkup(Alive_buttons))
+    getting = await e.reply("fetching stats......")
+    _stats = get_stats()
+    await getting.delete()
+    await e.reply(_stats, reply_markup=InlineKeyboardMarkup(stats_buttons))
