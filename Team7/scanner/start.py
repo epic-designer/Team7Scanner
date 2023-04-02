@@ -74,5 +74,5 @@ async def team7bruh_(_, message: Message):
              ],
              ]
    await hui.delete()
-   await message.reply(final_text, reply_markup=InlineKeyboardMarkup(buttons))
+   await message.reply_photo(PIC, caption=final_text, reply_markup=InlineKeyboardMarkup(buttons))
     
