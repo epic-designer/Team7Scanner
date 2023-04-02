@@ -65,10 +65,10 @@ async def team7bruh_(_, message: Message):
               InlineKeyboardButton(
                     "× stats", callback_data="stats"),
                     InlineKeyboardButton(
-                    "× Channel ", url="https://github.com/MrRizoel/Team7Scanner")
+                    "GitHub ×", url="https://github.com/MrRizoel/Team7Scanner")
              ], [
               InlineKeyboardButton(
-                    "× Channel ", url=f"https://t.me/{Channel}"),
+                    " × Channel ", url=f"https://t.me/{Channel}"),
               InlineKeyboardButton(
                     " Support ×", url=f"https://t.me/{Support}")
              ],
