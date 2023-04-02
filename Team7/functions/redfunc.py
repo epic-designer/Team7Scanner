@@ -1,6 +1,6 @@
 """ © Team7 || RiZoeL """
 
-from core import assistant
+from Team7.core import assistant
 import asyncio 
 
 async def passcmd_to_red(user, bancode, proof):
