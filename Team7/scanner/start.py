@@ -1,5 +1,6 @@
 """ Team7 || RiZoeL """
 
+import platform 
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from Team7.core import start_msg, start_buttons, __version__, Channel, Support 
