@@ -3,7 +3,7 @@ import time, datetime
 
 from Team7 import start_time
 from Team7.database import users_db
-from Team7.funtions import report_user_query, get_time
+from Team7.functions import report_user_query, get_time
 from Team7.core import alive_msg, get_stats
 
 from pyrogram import Client, filters
