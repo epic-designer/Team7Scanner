@@ -1,4 +1,4 @@
-from seven import DB_URL
+from Team7.core import DB_URL
 import sqlalchemy
 #from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
