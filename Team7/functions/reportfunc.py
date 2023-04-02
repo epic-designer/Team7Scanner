@@ -3,7 +3,7 @@ from .basic import user_in_res
 from .scanfunc import scancallpass
 
 from Team7.core import Team7Scanner, assistant, user_errors, SCAN_LOGS 
-from Team7.database import report_db
+from Team7.database import report_db, scan_db
 
 from pyrogram import filters
 from pyrogram.types import Message, CallbackQuery
@@ -29,7 +29,13 @@ async def report_user_query(T7: Team7Scanner, message: Message):
       return
    try:
       report_user = await T7.get_users(ask_user.text)
-      if await user_in_res(ask_user, report_user.id)
+      if await user_in_res(ask_user, report_user.id):
+         return
+      if report_db.check_report(report_user.id):
+         await message.reply("user already in report list!")
+         return
+      if scan_db.check_scan(report_user.id):
+         await message.reply("user already scanned by Team7")
          return
    except Exception as eror:
       if '[400 PEER_ID_INVALID]' in str(eror):
@@ -65,6 +71,7 @@ async def report_user_query(T7: Team7Scanner, message: Message):
    report_logs += f"**To user:** {report_user.mention} (`report_user.id}`) \n"
    report_logs += f"**Reason:** {check_code} \n"
    report_logs += f"**Proof:** `{proof}`"
+   report_db.report_user(report_user.id, user.id)
    await T7.send_message(SCAN_LOGS, report_logs, reply_markup=InlineKeyboardMarkup(report_btn))
    await T7.send_message(user.id, f"User {report_user.mention} now in report list of Team7-scanner")
 
