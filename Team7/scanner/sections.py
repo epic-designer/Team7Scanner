@@ -65,7 +65,7 @@ async def add_bot(T7: Client, message: Message):
       return
 
    db.add_bot(bot.id, bot.username)
-   await message.reply(f"User {user.mention} is successfully promoted as Dev ⚜️ -!")
+   await message.reply(f"User {user.mention} is successfully added in Bot list 🤖 -!")
 
    Logs = "**#NEW BOT**\n\n"
    Logs += f"**× Admin:** {message.from_user.mention} (`{message.from_user.id}`)\n"
