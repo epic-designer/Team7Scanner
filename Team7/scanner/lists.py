@@ -3,7 +3,7 @@ import re, io
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from . import Team7Users, Team7logo
-from Team7.databae import scan_db, report_db, users_db as db
+from Team7.database import scan_db, report_db, users_db as db
 from RiZoeLX.functions import delete_reply
 
 
