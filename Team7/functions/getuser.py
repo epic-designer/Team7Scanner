@@ -38,7 +38,8 @@ def import_members():
       Members.append(x.user_id)
    return Members"""
 
-async def get_urp(T7, message): """urp = user, reason, proof"""
+async def get_urp(T7, message):
+   """ urp = user, reason, proof """
    args = "".join(message.text.split(maxsplit=1)[1:]).split(" ", 2)
    txt = args[1:]
    if len(txt) == 2:
@@ -91,7 +92,6 @@ async def getuser(T7, message):
 
 async def getuser_extra(T7, message):
    args = "".join(message.text.split(maxsplit=1)[1:]).split(" ", 1)
-
    if message.reply_to_message:
       try:
          user = await T7.get_users(message.reply_to_message.from_user.id)
