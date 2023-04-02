@@ -2,7 +2,9 @@ from .check_reason import check_reason
 from .basic import user_in_res
 from .scanfunc import scancallpass
 
-from Team7.core import Team7Scanner, assistant, user_errors, SCAN_LOGS 
+from Team7.core.client import Team7Scanner, assistant
+from Team7.core.errors import user_errors
+from Team7.core.config import SCAN_LOGS 
 from Team7.database import report_db, scan_db
 
 from pyrogram import filters
