@@ -1,6 +1,6 @@
 
-import os, sys
-from Team7.core import OWNER_IDS, DEVS, Start_assistant, StartScanner
+import os, sys, asyncio
+from Team7.core import OWNER_IDS, DEVS, StartScanner
 from Team7.database import users_db
 
 print("[Team7 INFO]: Adding users in db!")
@@ -14,7 +14,6 @@ print("[Team7 INFO]: Added all devs in DB")
 print("[Team7 INFO]: Moving to next steps!")
 
 if __name__ == "__main__":
-   Start_assistant()
-   StartScanner()
+  asyncio.run(await StartScanner())
 
 
