@@ -6,3 +6,6 @@ from .starter import *
 from .errors import *
 from .string import *
 from .version import *
+
+Channel = "TheRiZoeL"
+Support = "TheRiZoeL"
