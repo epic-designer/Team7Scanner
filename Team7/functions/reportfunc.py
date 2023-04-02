@@ -68,7 +68,7 @@ async def report_user_query(T7: Team7Scanner, message: Message):
                 ]
    report_logs = "#REPORT! \n\n"
    report_logs += f"**By User:** {user.mention} (`{user.id}`) \n"
-   report_logs += f"**To user:** {report_user.mention} (`report_user.id}`) \n"
+   report_logs += f"**To user:** {report_user.mention} (`{report_user.id}`) \n"
    report_logs += f"**Reason:** {check_code} \n"
    report_logs += f"**Proof:** `{proof}`"
    report_db.report_user(report_user.id, user.id)
