@@ -69,7 +69,7 @@ async def seven_info(T7: Client, e: Message):
    await e.reply_text(msg)
 
 
-@Client.on_message(filters.command(["t7info", "seveninfo"], ["!", "?", "/", "."]))
+@Client.on_message(filters.user(Owners) & filters.command(["t7info", "seveninfo"], ["!", "?", "/", "."]))
 async def team7_info(T7: Client, message: Message):
    hui = await message.reply("!-----")
    await asyncio.sleep(0.4)
