@@ -17,6 +17,7 @@ async def Start_assistant():
         print(f"[Team7 INFO]: Error {str(a)}")
 
 async def StartScanner():
+    await Start_assistant()
     print("[Team7 INFO]: Starting Team7 Scanner")
     try:
         await Team7Scanner.start()
