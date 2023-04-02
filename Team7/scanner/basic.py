@@ -1,7 +1,7 @@
 """ Team7 RiZoeL || जय श्री राम 🚩"""
 
 import os, sys, datetime, time
-from Team7.functions import get_time 
+from Team7.functions import get_time, Bancodestext
 from Team7 import start_time, Team7Users, Owner, Devs 
 from Team7.core import alive_pic, alive_buttons, alive_msg, get_stats, stats_buttons
 from pyrogram import Client, filters
@@ -82,11 +82,13 @@ async def getid(client: Client, message: Message):
        parse_mode=ParseMode.MARKDOWN,
    )
 
-
-# stats
 @Client.on_message(filters.user(Team7Users) & filters.command(["stats"], ["!", "?", "/", "."]))
 async def stats_(_: Client, e: Message):
     getting = await e.reply("fetching stats......")
     _stats = get_stats()
     await getting.delete()
     await e.reply(_stats, reply_markup=InlineKeyboardMarkup(stats_buttons))
+
+@Client.on_message(filters.command(["bancodes", "reasons"], ["!", "?", "/", "."]))
+async def bancodes_(_: Client, e: Message):
+    await e.reply(Bancodestext)
