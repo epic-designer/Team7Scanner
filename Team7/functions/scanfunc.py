@@ -45,7 +45,7 @@ async def scanpass(T7, message, user, reason_code, proof):
                                  ]
                                  )
                                  )
-   scan_db.scan_user(user.id, reason)
+   scan_db.scan_user(user.id, reason_code)
    try:
       await passcmd_to_red(user, red7code, proof)
    except Exception as eor:
@@ -66,6 +66,13 @@ async def scanpass(T7, message, user, reason_code, proof):
    except:
       print(f"{user.first_name} is Noob!")
       pass
+   repcheck = report_db.check_report(user.id)
+   if repcheck:
+      try:
+          await assistant.send_message(repcheck.user_id, f"We scanned a user reported by you! \nUser {user.mention} \nReason {reason}")
+      except Exception:
+          pass
+      report_db.rm_report(user.id)
 
 async def scancallpass(T7, callback, user, reason_code, proof):
    reason, red7code = await check_reason(reason_code)
@@ -103,6 +110,13 @@ async def scancallpass(T7, callback, user, reason_code, proof):
    log_msg += f"Reason: `{reason}` \n"
    log_msg += f"Proof: `{proof}` \n"
    await T7.send_message(seven_logs, log_msg)
+   repcheck = report_db.check_report(user.id)
+   if repcheck:
+      try:
+          await assistant.send_message(repcheck.user_id, f"We scanned a user reported by you! \nUser {user.mention} \nReason {reason}")
+      except Exception:
+          pass
+      report_db.rm_report(user.id)
 
 @Team7Scanner.on_callback_query(filters.regex(r'revert'))
 async def scan_callback(T7: Team7Scanner, callback: CallbackQuery):
