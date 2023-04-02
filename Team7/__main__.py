@@ -1,6 +1,6 @@
 
 import os, sys
-from Team7.core import *
+from Team7.core import OWNER_IDS, DEVS, Start_assistant, StartScanner
 from Team7.database import users_db
 
 print("[Team7 INFO]: Adding users in db!")
