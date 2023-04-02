@@ -43,10 +43,10 @@ async def team7bruh_(_, message: Message):
       final_text += f"  **Your Rank:** Sudo 〽️ \n"
    hui3 = await delete_reply(message, hui2, ".....!")
    hui4 = await delete_reply(message, hui3, "fetching versions...")
-      final_text += f"  **Team7-scanner Ver:** `{__version__}` \n"
-      final_text += f"  **Python ver:** `{platform.python_version()}` \n"
-      final_text += f"  **pyrogram ver:** `{pyro_vr}` \n"
-      final_text += f"  **pyRiZoeLX ver:** `{rizoelx_vr}` \n"
+   final_text += f"  **Team7-scanner Ver:** `{__version__}` \n"
+   final_text += f"  **Python ver:** `{platform.python_version()}` \n"
+   final_text += f"  **pyrogram ver:** `{pyro_vr}` \n"
+   final_text += f"  **pyRiZoeLX ver:** `{rizoelx_vr}` \n"
    hui5 = await delete_reply(message, hui4, "...!...")
    hui6 = await delete_reply(message, hui5, "checking ping...")
    final_text += "<===================> \n\n"
