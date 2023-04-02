@@ -8,3 +8,4 @@ psutil
 py-cpuinfo 
 sqlalchemy==1.3.20
 psycopg2
+pyromod 
