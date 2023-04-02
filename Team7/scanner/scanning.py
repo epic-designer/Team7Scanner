@@ -14,7 +14,7 @@ async def scan_user(Team7: Client, message: Message):
     if await user_in_res(message, user.id):
        return
 
-    reason_code, _ = await check_reason(re)
+    reason_code, _ = check_reason(re)
     if reason_code == "Null":
        await message.reply(f"Eh! `{re}` is wrong bancode! Type /bancodes to get all bancodes!")
        return
