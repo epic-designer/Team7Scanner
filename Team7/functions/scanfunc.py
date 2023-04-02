@@ -1,7 +1,8 @@
 """ © Team7 || RiZoeL """
 
 from Team7.database import users_db, scan_db
-from Team7.core import Team7Scanner, assistant, SCAN_LOGS as seven_logs
+from Team7.core.client import Team7Scanner, assistant
+from Team7.core.config import SCAN_LOGS as seven_logs
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from .revertfunc import revertcallpass
 from .check_reason import check_reason
