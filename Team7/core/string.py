@@ -5,7 +5,7 @@ from .version import __version__
 from .config import Channel, Support 
 
 from pyrogram import __version__ as pyro_vr
-from pyRiZoeLX import __version__ as rizoelx_vr
+from RiZoeLX import __version__ as rizoelx_vr
 
 from Team7.database import users_db, scan_db, report_db
 
