@@ -1,5 +1,6 @@
 """ Team7 © RiZoeL """
 
+import pyromod
 from pyrogram import Client
 from .config import TOKEN, SESSION, API_ID, API_HASH
 
