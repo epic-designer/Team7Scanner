@@ -23,7 +23,7 @@ async def start_(_, message: Message):
          await message.reply_text(msg, reply_markup=InlineKeyboardMarkup(start_buttons))
     else:
        try:
-         await message.reply_video(GRP_PIC, caption="Contact me in PM to start :) ")
+         await message.reply_photo(GRP_PIC, caption="Contact me in PM to start :) ")
        except:
          await message.reply_text("Contact me in PM to start :) ")
 
