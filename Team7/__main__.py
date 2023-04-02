@@ -14,6 +14,6 @@ print("[Team7 INFO]: Added all devs in DB")
 print("[Team7 INFO]: Moving to next steps!")
 
 if __name__ == "__main__":
-  asyncio.run(await StartScanner())
+  asyncio.run(StartScanner())
 
 
