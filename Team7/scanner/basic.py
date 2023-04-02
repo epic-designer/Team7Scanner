@@ -3,7 +3,7 @@
 import os, sys, datetime, time
 from Team7.functions import get_time, Bancodestext
 from Team7 import start_time
-from . import Team7Users, Owner, Devs 
+from . import Team7Users, Owners, Devs 
 from Team7.core import alive_pic, alive_buttons, alive_msg, get_stats, stats_buttons
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup
@@ -28,7 +28,7 @@ async def alive(_, e: Message):
        await e.reply_video(alive_pic, caption=alive_msg, reply_markup=InlineKeyboardMarkup(alive_buttons))
 
 
-@Client.on_message(filters.user(Owner) & filters.command(["restart"], ["!", "?", "/", "."]))
+@Client.on_message(filters.user(Owners) & filters.command(["restart"], ["!", "?", "/", "."]))
 @Client.on_message(filters.user(Devs) & filters.command(["restart"], ["!", "?", "/", "."]))
 async def restart(Team7: Client, message: Message):
      reboot_text = "**Re-starting** \n\n__Wait For A While To Use it Again__ "
