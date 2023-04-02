@@ -1,5 +1,5 @@
 from Team7.database import users_db 
-from Team7.core import Team7Scanner
+from Team7.core.client import Team7Scanner
 
 
 async def itsme(message, user_id):
