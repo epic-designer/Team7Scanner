@@ -9,23 +9,23 @@ from .client import Team7Scanner, assistant
 from pyrogram.errors import ApiIdInvalid, ApiIdPublishedFlood, AccessTokenInvalid
 
 
-def Start_assistant():
+async def Start_assistant():
     try:
-        assistant.start()
+        await assistant.start()
         print("[Team7 INFO]: Scanner Assistant started")
     except Exception as a:
         print(f"[Team7 INFO]: Error {str(a)}")
 
-def StartScanner():
+async def StartScanner():
     print("[Team7 INFO]: Starting Team7 Scanner")
     try:
-        Team7Scanner.start()
+        await Team7Scanner.start()
     except (ApiIdInvalid, ApiIdPublishedFlood):
         raise Exception("[Team7 INFO]: API_ID/API_HASH is not valid.")
     except AccessTokenInvalid:
         raise Exception("[Team7 INFO]: Bot TOKEN is not valid.")
     try:
-       uname = Team7Scanner.get_me().username
+       uname = await Team7Scanner.get_me().username
        print(f"[Team7 INFO]: @{uname} is now running!")
     except:
        print("[Team7 INFO]: Scanner is now running!")
@@ -37,6 +37,6 @@ def StartScanner():
     print("""\n\n
      Team7 Scanner started successfully!
     """)
-    idle()
-    Team7Scanner.stop()
+    await idle()
+    await Team7Scanner.stop()
     print("Bot stopped.")
