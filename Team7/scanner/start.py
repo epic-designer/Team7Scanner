@@ -7,7 +7,7 @@ from Team7.database import users_db
 from . import Team7Users 
 from RiZoeLX.functions import delete_reply
 from pyrogram import __version__ as pyro_vr
-from pyRiZoeLX import __version__ as rizoelx_vr
+from RiZoeLX import __version__ as rizoelx_vr
 
 PIC = "https://telegra.ph//file/57781115c5b6cc7ea23bc.jpg"
 GRP_PIC = "https://telegra.ph//file/57781115c5b6cc7ea23bc.jpg"
