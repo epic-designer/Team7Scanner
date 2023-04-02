@@ -44,5 +44,31 @@ else:
    print("[Team7 INFO]: Got OWNER_IDS")
 
 DEVS = make_list(os.getenv("DEVS", ""))
+if not DEVS:
+   print("[Team7 INFO]: You didn't fill DEVS var!")
+   sys.exit()
+else:
+   print("[Team7 INFO]: Got DEVS")
+
 SCAN_LOGS = os.getenv("SCAN_LOGS", "")
+if not SCAN_LOGS:
+   print("[Team7 INFO]: You didn't fill SCAN_LOGS var!")
+   sys.exit()
+else:
+   print("[Team7 INFO]: Got SCAN_LOGS")
+
 SEVEN_LOGS = os.getenv("SEVEN_LOGS", "")
+if not SEVEN_LOGS:
+   print("[Team7 INFO]: You didn't fill SEVEN_LOGS var!")
+   sys.exit()
+else:
+   print("[Team7 INFO]: Got SEVEN_LOGS")
+
+DB_URL = os.getenv("DATABASE_URL", "")
+if DB_URL:
+   print("[Team7 INFO]: Got DATABASE_URL")
+   if 'postgres' in DB_URL and 'postgresql' not in DB_URL:
+      DB_URL = DB_URL.replace("postgres", "postgresql")
+else:
+   print("[Team7 INFO]: You didn't fill DATABASE_URL")
+   sys.exit()
