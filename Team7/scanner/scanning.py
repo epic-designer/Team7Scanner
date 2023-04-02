@@ -2,7 +2,7 @@
 
 import re
 from . import Team7Users
-from Team7.functions import scanpass, revertpass, get_urp, getuser, user_in_res, check_reason, rcodes
+from Team7.functions import scanpass, revertpass, get_urp, getuser, user_in_res, check_reason
 from pyrogram import filters, Client
 from pyrogram.types import Message 
 
