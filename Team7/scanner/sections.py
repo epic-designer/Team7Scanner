@@ -28,27 +28,28 @@ async def adddev(T7: Client, message: Message):
 @Client.on_message(filters.user(Owners) & filters.command(["addsudo", "addredsudo"], ["!", "?", "/", "."]))
 @Client.on_message(filters.user(Devs) & filters.command(["addsudo", "addredsudo"], ["!", "?", "/", "."]))
 async def add_user(T7: Client, message: Message):
-   user, extra = await getuser_extra(T7, message)
+   user, bot = await getuser_extra(T7, message)
    if await user_in_res(message, user.id):
       return
-
-   if extra.is_bot:
-      if await itsme(message, extra.id):
+   if await itsme(message, bot.id):
          return
-      else:
-         bot = extra
+
+   if bot.is_bot:
+      if db.check_bot(bot.id):
+         await message.reply(f"@{bot.username} already in bot list!")
+         return 
+      db.add_sudo(user.id, bot.username)
+      db.add_bot(bot.id, bot.username)
+      await message.reply_text(f"User {user.mention} is successfully added in sudo list 👤-!")
+      Logs = "**#NEW SUDO**\n\n"
+      Logs += f"**× Admin:** {message.from_user.mention} (`{message.from_user.id}`)\n"
+      Logs += f"**× User:** {user.mention} (`{user.id}`) \n"
+      Logs += f"**× Bot:** @{bot.username}"
+      await T7.send_message(SEVEN_LOGS, Logs)
+
    else:
       await message.reply(f"{extra.mention} is not bot!")
       return
-
-   db.add_sudo(user.id, bot.username)
-   db.add_bot(bot.id, bot.username)
-   await message.reply_text(f"User {user.mention} is successfully added in sudo list 👤-!")
-   Logs = "**#NEW SUDO**\n\n"
-   Logs += f"**× Admin:** {message.from_user.mention} (`{message.from_user.id}`)\n"
-   Logs += f"**× User:** {user.mention} (`{user.id}`) \n"
-   Logs += f"**× Bot:** @{bot.username}"
-   await T7.send_message(SEVEN_LOGS, Logs)
 
 
 @Client.on_message(filters.user(Owners) & filters.command(["addbot"], ["!", "?", "/", "."]))
@@ -58,6 +59,9 @@ async def add_bot(T7: Client, message: Message):
    if await itsme(message, bot.id):
       return
    if bot.is_bot:
+      if db.check_bot(bot.id):
+         await message.reply(f"@{bot.username} already in bot list!")
+         return
       db.add_bot(bot.id, bot.username)
       await message.reply(f"User {user.mention} is successfully added in Bot list 🤖 -!")
 
