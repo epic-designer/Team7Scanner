@@ -5,8 +5,8 @@ from pyrogram import filters, Client
 from pyrogram.types import Message
 
 
-async def itt7(message, user):
-   me = await Client.get_me()
+async def itt7(T7, message, user):
+   me = await T7.get_me()
    if user.id == me.id:
       Msg = "**It's me! Team7's Scanner!** \n\n"
       Msg += "  • I'm An advance and fast pyrogram based scanner! \n" 
@@ -42,7 +42,7 @@ async def seven_info(T7: Client, e: Message):
             await e.reply(str(eor))
             return
 
-   if await itt7(e, user):
+   if await itt7(T7, e, user):
       return 
 
    msg = "**User INFO!** \n\n"
