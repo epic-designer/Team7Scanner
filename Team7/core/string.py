@@ -64,7 +64,7 @@ alive_msg = f"""
 ** × Team7 Scanner Here × ***
 
  • **Team7-scanner Ver:** `{__version}`
- • **Python ver:** `{}`
+ • **Python ver:** `{platform.python_version()}`
  • **pyrogram ver:** `{pyro_vr}`
  • **pyRiZoeLX ver:** `{rizoelx_vr}`
 """
