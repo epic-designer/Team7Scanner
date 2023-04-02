@@ -64,7 +64,7 @@ def get_stats():
 
 
 def get_inline_stats():
-    stats_msg = "**------ Team7 - Scanner ------**\n"
+    stats_msg = "------ Team7 - Scanner ------\n"
     stats_msg += f"  • Total Devs: {users_db.dev_count()} \n"
     stats_msg += f"  • Total Red-Sudo: {users_db.sudo_count()} \n"
     stats_msg += f"  • Total Bots:** {users_db.bot_count()} \n\n"
