@@ -24,17 +24,17 @@ async def user_in_devs(message, user_id):
        return True
 
 async def user_in_res(message, user_id):
-   if user_in_owners(message, user_id):
+   if await user_in_owners(message, user_id):
        return True
-   if user_in_devs(message, user_id):
+   if await user_in_devs(message, user_id):
        return True
-   if user_in_sudos(message, user_id):
+   if await user_in_sudos(message, user_id):
        return True
-   if itsme(message, user_id):
+   if await itsme(message, user_id):
        return True
 
 async def owner_dev(message, user_id):
-   if user_in_owners(message, user_id):
+   if await user_in_owners(message, user_id):
        return True 
-   if user_in_devs(message, user_id):
+   if await user_in_devs(message, user_id):
        return True 
