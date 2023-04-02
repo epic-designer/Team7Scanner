@@ -63,7 +63,7 @@ def get_stats():
 alive_msg = f"""
 ** × Team7 Scanner Here × ***
 
- • **Team7-scanner Ver:** `{__version}`
+ • **Team7-scanner Ver:** `{__version__}`
  • **Python ver:** `{platform.python_version()}`
  • **pyrogram ver:** `{pyro_vr}`
  • **pyRiZoeLX ver:** `{rizoelx_vr}`
