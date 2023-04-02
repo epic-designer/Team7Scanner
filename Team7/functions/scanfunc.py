@@ -16,7 +16,11 @@ Note: user {} is official scanned by Team7 || Red7
 """
 
 async def scanpass(T7, message, user, reason_code, proof):
-   reason, red7code = await check_reason(reason_code)
+   reason, red7code = check_reason(reason_code)
+   if scan_db.check_scan(user.id):
+      alreson = check_reason(scan_db.check_scan(user.id).reason)
+      await message.reply(f"User {user.mention} already in scan list \nReason: {alreson}")
+      return
    if user.username:
       bancmd = scan_cmd.format(user.username, reason, proof, user.first_name)
    else:
@@ -75,7 +79,7 @@ async def scanpass(T7, message, user, reason_code, proof):
       report_db.rm_report(user.id)
 
 async def scancallpass(T7, callback, user, reason_code, proof):
-   reason, red7code = await check_reason(reason_code)
+   reason, red7code = check_reason(reason_code)
    if user.username:
       bancmd = scan_cmd.format(user.username, reason, proof)
    else:
