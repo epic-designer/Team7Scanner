@@ -27,7 +27,7 @@ if not API_HASH:
 else:
    print("[Team7 INFO]: Got API_HASH")
 
-TOKEN = int(os.getenv("TOKEN", ""))
+TOKEN = os.getenv("TOKEN", "")
 if not TOKEN:
    print("[Team7 INFO]: You didn't fill TOKEN var!")
    sys.exit()
