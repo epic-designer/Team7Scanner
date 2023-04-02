@@ -80,8 +80,7 @@ async def getid(client: Client, message: Message):
     await message.reply_text(
        text,
        disable_web_page_preview=True,
-       parse_mode=ParseMode.MARKDOWN,
-   )
+    )
 
 @Client.on_message(filters.user(Team7Users) & filters.command(["stats"], ["!", "?", "/", "."]))
 async def stats_(_: Client, e: Message):
