@@ -80,7 +80,7 @@ def add_dev(user_id):
         SESSION.add(user)
         SESSION.commit()
 
-def add_user(user_id, bot_username):
+def add_sudo(user_id, bot_username):
     fuk = SESSION.query(Users).get(user_id)
     if not fuk:
         user = Users(user_id, bot_username)
@@ -109,7 +109,7 @@ def get_all_devs():
         SESSION.close()
 
 
-def get_all_users():
+def get_all_sudos():
     try:
         return SESSION.query(Users).all()
     finally:
@@ -132,7 +132,7 @@ def rm_dev(user_id):
         else:
             SESSION.close()
 
-def rm_user(user_id):
+def rm_sudo(user_id):
     with ILOCK:
         user = SESSION.query(Users).get(user_id)
         if user:
@@ -167,7 +167,7 @@ def check_dev(user_id):
     finally:
         SESSION.close()
 
-def check_user(user_id):
+def check_sudo(user_id):
     try:
         return SESSION.query(Users).filter(Users.user_id == str(user_id)).one()
     except BaseException:
