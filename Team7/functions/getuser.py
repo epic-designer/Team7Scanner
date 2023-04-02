@@ -18,7 +18,7 @@ def import_devs():
 def import_sudos():
    Sudos = []
    for x in db.get_all_sudos():
-      Owners.append(x.user_id)
+      Sudos.append(x.user_id)
    return Sudos
 
 def import_members():
