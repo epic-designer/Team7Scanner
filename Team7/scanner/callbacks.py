@@ -15,6 +15,9 @@ async def T7callbacks(T7: Client, callback_query: CallbackQuery):
    admin = callback_query.from_user
    message = callback_query.message
    if query == "do_report":
+      if users_db.check_owner(admin.id) or users_db.check_dev(admin.id) or users_db.check_sudo(admin.id):
+         await callback_query.answer("You have rights to scan!", show_alert=True)
+         return 
       await report_user_query(T7, message)
 
    elif query == "reject_report":
