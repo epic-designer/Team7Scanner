@@ -1,10 +1,16 @@
 import os, sys
 from dotenv import load_dotenv
-from Team7.functions import make_list
 
 if os.path.exists(".env"):
     load_dotenv(".env")
 
+""Make list""
+def make_list(str_input):
+    str_list = str_input.split(" ")
+    int_list = []
+    for x in str_list:
+        int_list.append(int(x))
+    return int_list
 
 " ===================== CONFIGS ===================== "
 
