@@ -15,6 +15,7 @@ async def adddev(T7: Client, message: Message):
    user = await getuser(T7, message)
    if await user_in_res(message, user.id):
       return
+
    db.add_dev(user.id)
    await message.reply(f"User {user.mention} is successfully promoted as Dev ⚜️ -!")
 
@@ -40,7 +41,7 @@ async def add_user(T7: Client, message: Message):
       await message.reply(f"{extra.mention} is not bot!")
       return
 
-   db.add_user(user.id, bot.username)
+   db.add_sudo(user.id, bot.username)
    db.add_bot(bot.id, bot.username)
    await message.reply_text(f"User {user.mention} is successfully added in sudo list 👤-!")
    Logs = "**#NEW SUDO**\n\n"
