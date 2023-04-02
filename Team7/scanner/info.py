@@ -54,7 +54,7 @@ async def seven_info(T7: Client, e: Message):
    if user.username:
       msg += f"**Username:** @{user.username} \n"
    msg += f"**User link** [link](tg://user?id={user.id}) \n"
-   if users_db.check_own(int(user.id)):
+   if users_db.check_owner(int(user.id)):
       msg += "**Rank:** Owner 🔱 \n"
    if users_db.check_dev(int(user.id)):
       msg += "**Rank:** Dev ⚜️ \n"
