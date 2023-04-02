@@ -79,7 +79,7 @@ async def sevenlist(T7: Client, e: Message):
 @Client.on_message(filters.user(Team7Users) & filters.command(["scanlist"], ["!", "?", "/", "."]))
 async def scanlist(T7: Client, e: Message):
    Hey = await e.reply("collecting....")
-   data = scan_db.get_all_gbanned()
+   data = scan_db.get_all_scanned()
    scanlist = "• All Current scanned users in Team7 \n\n"
    if len(data) > 0:
      for usr in data:
