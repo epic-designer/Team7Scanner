@@ -1,6 +1,6 @@
 """ Team7 || RiZoeL """
 
-from pyrogram import Clients, filters
+from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from Team7.database import users_db as db
 from Team7.functions import report_user_query
