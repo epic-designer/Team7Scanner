@@ -1,8 +1,7 @@
 """ © Team7 || RiZoeL """
 
 from Team7.database import users_db, scan_db
-from Team7.core.client import assistant
-from Team7.core.config import SCAN_LOGS as seven_logs
+from Team7.core import assistant, SCAN_LOGS as seven_logs
 from .redfunc import revert_to_red
 from RiZoeLX.functions import delete_reply
 
