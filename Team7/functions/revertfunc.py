@@ -6,7 +6,7 @@ from .redfunc import revert_to_red
 from RiZoeLX.functions import delete_reply
 
 scan_cmd = """
-/revert {} 
+/ungban {} 
 """
 
 async def revertpass(T7, message, user):
