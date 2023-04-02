@@ -2,7 +2,8 @@
 
 import os, sys, datetime, time
 from Team7.functions import get_time, Bancodestext
-from Team7 import start_time, Team7Users, Owner, Devs 
+from Team7 import start_time
+from . import Team7Users, Owner, Devs 
 from Team7.core import alive_pic, alive_buttons, alive_msg, get_stats, stats_buttons
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup
