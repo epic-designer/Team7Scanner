@@ -1,4 +1,4 @@
-pyrogram==2.0.93
+pyrogram==2.0.62
 pyRiZoeLX
 tgcrypto
 python-dotenv[cli]
