@@ -6,6 +6,8 @@ from pyrogram import idle, __version__ as pyro_vr
 from RiZoeLX import __version__ as rizoelx_vr
 from .version import __version__
 from .client import Team7Scanner, assistant 
+from pyrogram.errors import ApiIdInvalid, ApiIdPublishedFlood, AccessTokenInvalid
+
 
 def Start_assistant():
     try:
