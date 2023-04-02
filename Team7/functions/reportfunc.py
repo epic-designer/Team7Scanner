@@ -46,7 +46,7 @@ async def report_user_query(T7: Team7Scanner, message: Message):
    ask_reason = await T7.ask(user.id, "Now Gime Reason code! Type /bancodes to get all reason codes!", filters.text)
    if await cancelled(ask_reason):
       return
-   check_code, _ = await check_reason(ask_reason.text)
+   check_code, _ = check_reason(ask_reason.text)
    if check_code == "Null":
       await ask_reason.reply(f"Eh! `{ask_reason.text}` is wrong bancode! Type /bancodes to get all bancodes!")
       return
