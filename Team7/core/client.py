@@ -1,7 +1,7 @@
 """ Team7 © RiZoeL """
 
 from pyrogram import Client
-from .config import TOKEN, SESSION
+from .config import TOKEN, SESSION, API_ID, API_HASH
 
 print("[Team7 INFO]: Defining Scanner......")
 Team7Scanner = Client(
