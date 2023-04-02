@@ -53,7 +53,7 @@ async def add_user(T7: Client, message: Message):
 
 @Client.on_message(filters.user(Owners) & filters.command(["addbot"], ["!", "?", "/", "."]))
 @Client.on_message(filters.user(Devs) & filters.command(["addbot"], ["!", "?", "/", "."]))
-async def add_bot(red: Client, e: Message):
+async def add_bot(T7: Client, e: Message):
    extra = await getuser(T7, message)
    if extra.is_bot:
       if await itsme(message, bot.id):
