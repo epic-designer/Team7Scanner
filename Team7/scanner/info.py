@@ -3,7 +3,8 @@
 from Team7.database import users_db, scan_db, report_db
 from pyrogram import filters, Client
 from pyrogram.types import Message
-
+from . import Owners
+import asyncio 
 
 async def itt7(T7, message, user):
    me = await T7.get_me()
@@ -66,3 +67,35 @@ async def seven_info(T7: Client, e: Message):
       msg += "**User in Report list!** \n"
    msg += "==================="
    await e.reply_text(msg)
+
+
+@Client.on_message(filters.command(["t7info", "seveninfo"], ["!", "?", "/", "."]))
+async def team7_info(T7: Client, message: Message):
+   hui = await message.reply("!-----")
+   await asyncio.sleep(0.3)
+   await hui.edit_text("-!----")
+   await asyncio.sleep(0.3)
+   await hui.edit_text("--!---")
+   await asyncio.sleep(0.3)
+   await hui.edit_text("---!--")
+   await asyncio.sleep(0.3)
+   await hui.edit_text("----!-")
+   await asyncio.sleep(0.3)
+   await hui.edit_text("-----!")
+   await asyncio.sleep(0.3)
+   await hui.edit_text("checking in database----")
+   await asyncio.sleep(0.3)
+   await hui.edit_text("Gotcha 😉")
+   await asyncio.sleep(0.3)
+   await hui.edit_text("😈")
+   await asyncio.sleep(0.3)
+   await hui.edit_text("Heyyy master!!")
+   await asyncio.sleep(0.5)
+   await hui.delete()
+   msg = f"**Here is my {message.from_user.mention} Sweet and sanki Owner!** 😉"
+   vid = "https://telegra.ph/file/424e60342e214bf267552.mp4"
+   await message.reply_video(vid, caption=msg)
+   
+   
+   
+   
