@@ -33,7 +33,7 @@ async def add_user(T7: Client, message: Message):
       return
 
    if extra.is_bot:
-      if await itsme(message, bot.id):
+      if await itsme(message, extra.id):
          return
       else:
          bot = extra
@@ -54,21 +54,17 @@ async def add_user(T7: Client, message: Message):
 @Client.on_message(filters.user(Owners) & filters.command(["addbot"], ["!", "?", "/", "."]))
 @Client.on_message(filters.user(Devs) & filters.command(["addbot"], ["!", "?", "/", "."]))
 async def add_bot(T7: Client, message: Message):
-   extra = await getuser(T7, message)
-   if extra.is_bot:
-      if await itsme(message, bot.id):
-         return
-      else:
-         bot = extra
+   bot = await getuser(T7, message)
+   if await itsme(message, bot.id):
+      return
+   if bot.is_bot:
+      db.add_bot(bot.id, bot.username)
+      await message.reply(f"User {user.mention} is successfully added in Bot list 🤖 -!")
+
+      Logs = "**#NEW BOT**\n\n"
+      Logs += f"**× Admin:** {message.from_user.mention} (`{message.from_user.id}`)\n"
+      Logs += f"**× Bot:** @{bot.username} (`{bot.id}`)"
+      await T7.send_message(SEVEN_LOGS, Logs)
+
    else:
       await message.reply(f"{extra.mention} is not bot!")
-      return
-
-   db.add_bot(bot.id, bot.username)
-   await message.reply(f"User {user.mention} is successfully added in Bot list 🤖 -!")
-
-   Logs = "**#NEW BOT**\n\n"
-   Logs += f"**× Admin:** {message.from_user.mention} (`{message.from_user.id}`)\n"
-   Logs += f"**× Bot:** @{bot.username} (`{bot.id}`)"
-   await T7.send_message(SEVEN_LOGS, Logs)
-
