@@ -15,7 +15,7 @@ from pyrogram.types import InlineKeyboardButton
 alive_pic = "https://telegra.ph//file/57781115c5b6cc7ea23bc.jpg"
 
 def get_stats():
-    stats_msg = "**------ Team7 - Scanner ------**\n"
+    stats_msg = "**------ Team7 - Scanner ------**\n\n"
     try:
         diskTotal = int(psutil.disk_usage('/').total / (1024 * 1024 * 1024))
         diskUsed = int(psutil.disk_usage('/').used / (1024 * 1024 * 1024))
@@ -23,7 +23,7 @@ def get_stats():
         disk = f"{diskUsed}GB / {diskTotal}GB ({diskPercent}%)"
     except:
         disk = "Unknown"
-    stats_msg += f"**Disk:** {disk} \n"
+    stats_msg += f"  Disk: {disk} \n"
 
     try:
         ramTotal = int(psutil.virtual_memory().total / (1024 * 1024))
@@ -32,7 +32,7 @@ def get_stats():
         ram = f"{ramUsage}MB / {ramTotal} MB ({ramUsagePercent}%)"
     except:
         ram = "Unknown"
-    stats_msg += f"**Ram:** {ram} \n"
+    stats_msg += f"  Ram: {ram} \n"
 
     try:
         cpuInfo = cpuinfo.get_cpu_info()['brand_raw']
@@ -40,25 +40,25 @@ def get_stats():
         cpu = f"{cpuInfo} ({cpuUsage}%)"
     except:
         cpu = "Unknown"
-    stats_msg += f"**CPU:** {cpu} \n"
+    stats_msg += f"  CPU: {cpu} \n"
 
     try:
         os = f"{platform.system()} - {platform.release()} ({platform.machine()})"
     except:
         os = "Unknown"
-    stats_msg += f"**OS:** {os} \n"
+    stats_msg += f"  OS: {os} \n"
     
     try:
         battery = f"{int(psutil.sensors_battery().percent)}%"
     except:
         battery = f"Unknown"
-    stats_msg += f"**Battery:** {battery} \n\n"
+    stats_msg += f"  Battery: {battery} \n\n"
 
-    stats_msg += f"  **• Total Devs:** `{users_db.dev_count()}` \n"
-    stats_msg += f"  **• Total Red-Sudo:** `{users_db.sudo_count()}` \n"
-    stats_msg += f"  **• Total Bots:** `{users_db.bot_count()}` \n\n"
-    stats_msg += f"  **• Total scanned users:** `{scan_db.scan_count()}` \n"
-    stats_msg += f"  **• Total reported users:** `{report_db.report_count()}` \n"
+    stats_msg += f"  • Total Devs: {users_db.dev_count()} \n"
+    stats_msg += f"  • Total Red-Sudo: {users_db.sudo_count()} \n"
+    stats_msg += f"  • Total Bots:** {users_db.bot_count()} \n\n"
+    stats_msg += f"  • Total scanned users: {scan_db.scan_count()} \n"
+    stats_msg += f"  • Total reported users: {report_db.report_count()}` \n"
     stats_msg += "------ © Team7 || RiZoeL ------"
     return stats_msg
 
@@ -69,6 +69,15 @@ alive_msg = f"""
  • **Python ver:** `{platform.python_version()}`
  • **pyrogram ver:** `{pyro_vr}`
  • **pyRiZoeLX ver:** `{rizoelx_vr}`
+"""
+
+inline_alive_msg = f"""
+× Team7 Scanner Here × 
+
+ • Team7-scanner Ver: {__version__}
+ • Python ver: {platform.python_version()}
+ • pyrogram ver: {pyro_vr}
+ • pyRiZoeLX ver: {rizoelx_vr}
 """
 
 start_msg = """
