@@ -18,7 +18,6 @@ assistant = Client(
     'Team7Assistant',
     api_id=API_ID,
     api_hash=API_HASH,
-    session_string=SESSION,
-    plugins=dict(root="Team7.assistant")
+    session_string=SESSION
 )
 print("[Team7 INFO]: Got Assistant!")
