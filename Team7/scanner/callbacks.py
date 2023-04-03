@@ -23,15 +23,6 @@ async def T7callbacks(T7: Client, callback_query: CallbackQuery):
       await callback_query.delete()
       await report_user_query(T7, message)
 
-   elif query == "reject_report":
-      if users_db.check_owner(admin.id) or users_db.check_dev(admin.id):
-         try:
-             await callback_query.edit_message_text(f"**Report Rejected By admin {admin.mention}!**")
-         except Exception:
-             await callback_query.delete()
-      else:
-         await callback_query.answer("Only Team7's devs can!", show_alert=True)
-
    elif query == "ping":
       start = datetime.datetime.now()
       uptime = await get_time((time.time() - start_time))
