@@ -1,6 +1,9 @@
+import os
 from Team7.database import users_db 
 from Team7.core.client import Team7Scanner
 from pyrogram.types import Message 
+from telegraph import Telegraph, exceptions, upload_file
+
 
 async def itsme(message: Message, user_id):
     me = await Team7Scanner.get_me()
@@ -38,3 +41,14 @@ async def owner_dev(message: Message, user_id):
        return True 
    if await user_in_devs(message, user_id):
        return True 
+
+async def make_tg(message):
+   doc = await message.download()
+   try:
+      media_url = upload_file(doc)
+   except exceptions.TelegraphException as exc:
+      await message.reply(f"**ERROR:** `{exc}`")
+      os.remove(doc)
+      return
+   return f"https://telegra.ph/{media_url[0]}"
+   os.remove(doc)
