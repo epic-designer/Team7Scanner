@@ -23,7 +23,7 @@ async def cancelled(msg):
 
 async def report_user_query(T7: Team7Scanner, message: Message):
    chat = message.chat
-   ask_user = await T7.ask(message.from_user.id, "Gime username or user id of user!", filters=filters.text)
+   ask_user = await T7.ask(chat.id, "Gime username or user id of user!", filters=filters.text)
    if await cancelled(ask_user):
       return
    try:
@@ -42,7 +42,7 @@ async def report_user_query(T7: Team7Scanner, message: Message):
          return
       error = user_errors(str(eror))
       await message.reply(str(error))
-   ask_reason = await T7.ask(message.from_user.id, "Now Gime Reason code! Type /bancodes to get all reason codes!", filters.text)
+   ask_reason = await T7.ask(chat.id, "Now Gime Reason code! Type /bancodes to get all reason codes!", filters.text)
    if await cancelled(ask_reason):
       return
    check_code, _ = check_reason(ask_reason.text)
@@ -50,7 +50,7 @@ async def report_user_query(T7: Team7Scanner, message: Message):
       await ask_reason.reply(f"Eh! `{ask_reason.text}` is wrong bancode! Type /bancodes to get all bancodes!")
       return
    reason_code = ask_reason.text
-   ask_proof = await T7.ask(message.from_user.id, "Now Gime proof (single telegraph link)", filters.text)
+   ask_proof = await T7.ask(chat.id, "Now Gime proof (single telegraph link)", filters.text)
    if await cancelled(ask_proof):
       return
    pr = ask_proof.text
@@ -66,7 +66,7 @@ async def report_user_query(T7: Team7Scanner, message: Message):
                 ],
                 ]
    report_logs = "#REPORT! \n\n"
-   report_logs += f"**By User:** {user.mention} (`{user.id}`) \n"
+   report_logs += f"**By User:** {message.from_user.mention} (`{message.from_user.id}`) \n"
    report_logs += f"**To user:** {report_user.mention} (`{report_user.id}`) \n"
    report_logs += f"**Reason:** {check_code} \n"
    report_logs += f"**Proof:** `{proof}`"
