@@ -115,7 +115,7 @@ async def reportlist(T7: Client, e: Message):
          await T7.send_document(
                chat_id=e.chat.id,
                document=out_file,
-               thumb="seven/Red7.jpg",
+               thumb=Team7logo,
                caption="Report users list of Red7-scanner!",
                reply_to_message_id=e.id,
                )
