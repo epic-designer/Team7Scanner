@@ -166,11 +166,11 @@ async def scan_user_query(T7: Team7Scanner, message: Message):
       return
    reason_code = ask_reason.text
    ask_proof = await T7.ask(chat.id, "Now Gime proof (single telegraph link) or photo", timeout=300)
-   if await cancelled(ask_proof):
-      return
    if ask_proof.photo:
       proof = await make_tg(ask_proof)
    elif ask_proof.text:
+      if await cancelled(ask_proof):
+         return
       pr = ask_proof.text
       if pr.startswith("https://telegra.ph/file") or pr.startswith("https://telegra.ph") or pr.startswith("https://graph.org") or pr.startswith("https://graph.org/file"):
          proof = str(pr)
