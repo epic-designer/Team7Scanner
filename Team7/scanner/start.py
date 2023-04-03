@@ -42,20 +42,20 @@ async def team7bruh_(_, message: Message):
       final_text += f"  **Your Rank:** Dev ⚜️ \n"
    else:
       final_text += f"  **Your Rank:** Sudo 〽️ \n"
-   hui.edit_text(".....!")
-   hui.edit_text("fetching versions...")
+   await hui.edit_text(".....!")
+   await hui.edit_text("fetching versions...")
    final_text += f"  **Team7-scanner Ver:** `{__version__}` \n"
    final_text += f"  **Python ver:** `{platform.python_version()}` \n"
    final_text += f"  **pyrogram ver:** `{pyro_vr}` \n"
    final_text += f"  **pyRiZoeLX ver:** `{rizoelx_vr}` \n"
-   hui.edit_text("...!...")
-   hui.edit_text("checking ping...")
+   await hui.edit_text("...!...")
+   await hui.edit_text("checking ping...")
    final_text += "<===================> \n\n"
-   hui.edit_text("......")
+   await hui.edit_text("......")
    final_text += "**Powered By Team7!** \n"
-   hui.edit_text("Team7 is alive....")
-   hui.edit_text("Team7 Scanner....")
-   hui.edit_text("Ready....")
+   await hui.edit_text("Team7 is alive....")
+   await hui.edit_text("Team7 Scanner....")
+   await hui.edit_text("Ready....")
    buttons = [ [
               InlineKeyboardButton(
                     "× Alive", callback_data="alive"),
