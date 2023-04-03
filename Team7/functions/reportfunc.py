@@ -1,5 +1,5 @@
 from .check_reason import check_reason
-from .basic import user_in_res
+from .basic import user_in_res, make_tg
 from .scanfunc import scancallpass
 
 from Team7.core import Team7Scanner, assistant, user_errors, SCAN_LOGS 
@@ -51,15 +51,18 @@ async def report_user_query(T7: Team7Scanner, message: Message):
       await ask_reason.reply(f"Eh! `{ask_reason.text}` is wrong bancode! Type /bancodes to get all bancodes!")
       return
    reason_code = ask_reason.text
-   ask_proof = await T7.ask(chat.id, "Now Gime proof (single telegraph link)", filters.text)
+   ask_proof = await T7.ask(chat.id, "Now Gime proof (single telegraph link) or photo", filters.text & filters.media)
    if await cancelled(ask_proof):
       return
-   pr = ask_proof.text
-   if pr.startswith("https://telegra.ph/file") or pr.startswith("https://telegra.ph") or pr.startswith("https://graph.org") or pr.startswith("https://graph.org/file"):
-       proof = str(pr)
+   if ask_proof.media:
+      proof = await make_tg(ask_proof)
    else:
-       await ask_proof.reply("need telegraph link as a proof!")
-       return
+      pr = ask_proof.text
+      if pr.startswith("https://telegra.ph/file") or pr.startswith("https://telegra.ph") or pr.startswith("https://graph.org") or pr.startswith("https://graph.org/file"):
+         proof = str(pr)
+      else:
+         await ask_proof.reply("need telegraph link as a proof!")
+         return
    report_btn = [
                 [ InlineKeyboardButton("• Scan/Accept •", callback_data=f"report_accept:{user.id}:{reason_code}:{proof}")
                 ], [
