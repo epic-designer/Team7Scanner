@@ -3,7 +3,7 @@ from .basic import user_in_res, make_tg, tg_download
 from .scanfunc import scancallpass
 
 from Team7.core import Team7Scanner, assistant, user_errors, SCAN_LOGS 
-from Team7.database import report_db, scan_db
+from Team7.database import report_db, scan_db, users_db
 
 from pyrogram import filters
 from pyrogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
