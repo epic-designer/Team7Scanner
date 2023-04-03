@@ -3,8 +3,8 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from Team7.database import report_db, users_db as db
-from Team7.functions import report_user_query, getuser
-from . import Owners, Devs 
+from Team7.functions import report_user_query, getuser, user_in_res
+from . import Owners, Devs
 
 
 def sudo_checking(user_id):
