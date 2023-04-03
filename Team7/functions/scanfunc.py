@@ -165,18 +165,21 @@ async def scan_user_query(T7: Team7Scanner, message: Message):
       await ask_reason.reply(f"Eh! `{ask_reason.text}` is wrong bancode! Type /bancodes to get all bancodes!")
       return
    reason_code = ask_reason.text
-   ask_proof = await T7.ask(chat.id, "Now Gime proof (single telegraph link) or photo", filters.text & filters.photo, timeout=300)
+   ask_proof = await T7.ask(chat.id, "Now Gime proof (single telegraph link) or photo", timeout=300)
    if await cancelled(ask_proof):
       return
    if ask_proof.photo:
       proof = await make_tg(ask_proof)
-   else:
+   elif ask_proof.text:
       pr = ask_proof.text
       if pr.startswith("https://telegra.ph/file") or pr.startswith("https://telegra.ph") or pr.startswith("https://graph.org") or pr.startswith("https://graph.org/file"):
          proof = str(pr)
       else:
          await ask_proof.reply("need telegraph link as a proof!")
          return
+   else:
+       await ask_proof.reply("send Telegraph link or photo!")
+       return
    await scanpass(T7, message, scan_user, reason_code, proof)
 
 @Team7Scanner.on_callback_query(filters.regex(r'revert'))
