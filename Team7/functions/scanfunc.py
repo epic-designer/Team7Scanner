@@ -9,6 +9,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, 
 from .revertfunc import revertcallpass
 from .check_reason import check_reason
 from .redfunc import passcmd_to_red 
+from .basic import make_tg
 
 scan_cmd = """
 /gban {} 
@@ -146,9 +147,6 @@ async def scan_user_query(T7: Team7Scanner, message: Message):
    try:
       scan_user = await T7.get_users(ask_user.text)
       if await user_in_res(ask_user, scan_user.id):
-         return
-      if report_db.check_report(scan_user.id):
-         await message.reply("user already in report list!")
          return
       if scan_db.check_scan(scan_user.id):
          await message.reply("user already scanned by Team7")
