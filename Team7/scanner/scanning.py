@@ -2,15 +2,18 @@
 
 import re
 from . import Team7Users
-from Team7.functions import scanpass, revertpass, get_urp, getuser, user_in_res, check_reason
+from Team7.functions import scanpass, revertpass, get_urp, getuser, user_in_res, check_reason, scan_user_query
 from pyrogram import filters, Client
 from pyrogram.types import Message 
 
 @Client.on_message(filters.user(Team7Users) & filters.command(["scan"], ["!", "?", "/", "."]))
 async def scan_user(Team7: Client, message: Message):
+    if message.from_user.id == message.chat.id:
+       await scan_user_query(Team7, message)
+       return 
     user, re, pr = await get_urp(Team7, message)
     if not user:
-        return 
+       return 
     if await user_in_res(message, user.id):
        return
 
