@@ -24,7 +24,7 @@ async def cancelled(msg):
 
 async def report_user_query(T7: Team7Scanner, message: Message):
    chat = message.chat
-   ask_user = await T7.ask(chat.id, "Gime username or user id of user!", filters=filters.text)
+   ask_user = await T7.ask(chat.id, "Gime username or user id of user!", filters=filters.text, timeout=300)
    if await cancelled(ask_user):
       return
    try:
@@ -43,7 +43,7 @@ async def report_user_query(T7: Team7Scanner, message: Message):
          return
       error = user_errors(str(eror))
       await message.reply(str(error))
-   ask_reason = await T7.ask(chat.id, "Now Gime Reason code! Type /bancodes to get all reason codes!", filters.text)
+   ask_reason = await T7.ask(chat.id, "Now Gime Reason code! Type /bancodes to get all reason codes!", filters.text, timeout=300)
    if await cancelled(ask_reason):
       return
    check_code, _ = check_reason(ask_reason.text)
@@ -51,7 +51,7 @@ async def report_user_query(T7: Team7Scanner, message: Message):
       await ask_reason.reply(f"Eh! `{ask_reason.text}` is wrong bancode! Type /bancodes to get all bancodes!")
       return
    reason_code = ask_reason.text
-   ask_proof = await T7.ask(chat.id, "Now Gime proof (single telegraph link) or photo", filters.text & filters.media)
+   ask_proof = await T7.ask(chat.id, "Now Gime proof (single telegraph link) or photo", filters.text & filters.media, timeout=300)
    if await cancelled(ask_proof):
       return
    if ask_proof.media:
