@@ -77,7 +77,7 @@ async def report_user_query(T7: Team7Scanner, message: Message):
    report_logs += f"**To user:** {report_user.mention} (`{report_user.id}`) \n"
    report_logs += f"**Reason:** {check_code} \n"
    report_logs += f"**Proof:** `{proof}`"
-   report_db.report_user(report_user.id, user.id)
+   report_db.report_user(report_user.id, chat.id)
    await T7.send_message(SCAN_LOGS, report_logs, reply_markup=InlineKeyboardMarkup(report_btn))
    await T7.send_message(chat.id, f"User {report_user.mention} now in report list of Team7-scanner")
 
