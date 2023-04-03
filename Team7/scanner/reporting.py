@@ -2,8 +2,8 @@
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from Team7.database import users_db as db
-from Team7.functions import report_user_query
+from Team7.database import report_db, users_db as db
+from Team7.functions import report_user_query, getuser
 
 def sudo_checking(user_id):
    if db.check_owner(user_id):
@@ -27,3 +27,16 @@ async def report_user_(T7: Client, message: Message):
        return
 
     await report_user_query(T7, message)
+
+@Client.on_message(filters.user(Owners) & filters.command(["rmreport", "removereport"], ["!", "?", "/", "."]))
+@Client.on_message(filters.user(Devs) & filters.command(["rmreport", "removereport"], ["!", "?", "/", "."]))
+async def rmreport(T7: Client, message: Message):
+   user = await getuser(T7, message)
+   if await user_in_res(message, user.id):
+      return
+
+   if report_db.check_report(user.id)
+      report_db.rm_report(user.id)
+      await message.reply(f"{user.mention} removed from report list!")
+   else:
+      await message.reply("user not in report list!")
