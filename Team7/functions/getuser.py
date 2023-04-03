@@ -72,7 +72,10 @@ async def get_urp(T7: Team7Scanner, message: Message):
 
 async def getuser(T7: Team7Scanner, message: Message):
    args = "".join(message.text.split(maxsplit=1)[1:]).split(" ", 1)
-   if message.reply_to_message:
+   if not args and not message.reply_to_message:
+      await message.reply("You need to specify an user!")
+      return
+   elif message.reply_to_message:
       try:
          user = await T7.get_users(message.reply_to_message.from_user.id)
       except:
