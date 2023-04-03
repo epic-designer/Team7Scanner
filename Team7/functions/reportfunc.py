@@ -67,7 +67,7 @@ async def report_user_query(T7: Team7Scanner, message: Message):
        await ask_proof.reply("send Telegraph link or photo!")
        return
    report_btn = [
-                [ InlineKeyboardButton("• Scan/Accept •", callback_data=f"report_accept:{user.id}:{reason_code}:{proof}")
+                [ InlineKeyboardButton("• Scan/Accept •", callback_data=f"report_accept:{report_user.id}:{reason_code}:{proof}")
                 ], [
                   InlineKeyboardButton("• Scan/Accept •", callback_data=f"report_reject")
                 ],
