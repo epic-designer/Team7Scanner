@@ -60,7 +60,7 @@ async def seven_info(T7: Client, e: Message):
       msg += "**Rank:** Owner 🔱 \n"
    if users_db.check_dev(int(user.id)):
       msg += "**Rank:** Dev ⚜️ \n"
-   if users_db.check_user(int(user.id)):
+   if users_db.check_sudo(int(user.id)):
       msg += "**Rank:** 7-Sudo 👤 \n"
    if scan_db.check_scan(int(user.id)):
       msg += "**Scanned user: Yes!** \n"
