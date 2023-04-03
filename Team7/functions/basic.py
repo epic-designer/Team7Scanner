@@ -55,4 +55,14 @@ async def make_tg(message):
       await message.reply(f"**ERROR:** `{exc}`")
       os.remove(doc)
       return 
-   
+
+async def tg_download(message):
+   doc = await message.download()
+   try:
+      media_url = upload_file(doc)
+      tg_url = f"https://telegra.ph/{media_url[0]}"
+      os.remove(doc)
+      return tg_url
+   except exceptions.TelegraphException as exc:
+      os.remove(doc)
+      return
