@@ -93,8 +93,8 @@ async def scan_callback(T7: Team7Scanner, callback: CallbackQuery):
     admin = callback.from_user
     message = callback.message
     if users_db.check_owner(admin.id) or users_db.check_dev(admin.id):
-       if query[0] == "reject":
-          user_id = query[1]
+       if query[1] == "reject":
+          user_id = query[2]
           report_db.rm_report(user_id)
           try:
              await callback.edit_message_text(f"**Report Rejected By admin {admin.mention}!**")
@@ -102,10 +102,10 @@ async def scan_callback(T7: Team7Scanner, callback: CallbackQuery):
              await callback.delete()
           return
       
-       user_id = int(query[0])
+       user_id = int(query[2])
        user = await T7.get_users(user_id=user_id)
-       reason = query[1]
-       file_id = await T7.get_messages("T7PROOF", query[2])
+       reason = query[3]
+       file_id = await T7.get_messages("T7PROOF", query[4])
        proof = await tg_download(file_id)
        await scancallpass(T7, callback, user, reason, proof)
     else:
