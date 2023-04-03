@@ -35,7 +35,7 @@ async def rmreport(T7: Client, message: Message):
    if await user_in_res(message, user.id):
       return
 
-   if report_db.check_report(user.id)
+   if report_db.check_report(user.id):
       report_db.rm_report(user.id)
       await message.reply(f"{user.mention} removed from report list!")
    else:
