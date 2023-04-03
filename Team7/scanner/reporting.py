@@ -34,6 +34,8 @@ async def report_user_(T7: Client, message: Message):
 @Client.on_message(filters.user(Devs) & filters.command(["rmreport", "removereport"], ["!", "?", "/", "."]))
 async def rmreport(T7: Client, message: Message):
    user = await getuser(T7, message)
+   if not user:
+      return
    """if sudo_checking(user.id):
       await message.reply("🤨?")
       return"""
