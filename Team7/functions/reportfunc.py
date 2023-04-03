@@ -1,5 +1,5 @@
 from .check_reason import check_reason
-from .basic import user_in_res, make_tg
+from .basic import user_in_res, make_tg, tg_download
 from .scanfunc import scancallpass
 
 from Team7.core import Team7Scanner, assistant, user_errors, SCAN_LOGS 
