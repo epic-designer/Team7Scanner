@@ -43,6 +43,7 @@ async def report_user_query(T7: Team7Scanner, message: Message):
          return
       error = user_errors(str(eror))
       await message.reply(str(error))
+      return
    ask_reason = await T7.ask(chat.id, "Now Gime Reason code! Type /bancodes to get all reason codes!", filters.text, timeout=300)
    if await cancelled(ask_reason):
       return
