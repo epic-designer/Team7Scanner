@@ -37,6 +37,9 @@ async def report_user_query(T7: Team7Scanner, message: Message):
       if scan_db.check_scan(report_user.id):
          await message.reply("user already scanned by Team7")
          return
+      if report_user.id == chat.id:
+         await message.reply("🧐 You want to report your self ?")
+         return
    except Exception as eror:
       if '[400 PEER_ID_INVALID]' in str(eror):
          await ask_user.repky("Forward any message of user and type /id replying that message! \nThen try again ✓")
