@@ -3,7 +3,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from Team7.database import report_db, users_db as db
-from Team7.functions import report_user_query, getuser, user_in_res
+from Team7.functions import report_user_query, getuser
 from . import Owners, Devs
 
 
@@ -34,7 +34,8 @@ async def report_user_(T7: Client, message: Message):
 @Client.on_message(filters.user(Devs) & filters.command(["rmreport", "removereport"], ["!", "?", "/", "."]))
 async def rmreport(T7: Client, message: Message):
    user = await getuser(T7, message)
-   if await user_in_res(message, user.id):
+   if sudo_checking(user.id):
+      await message.reply("🤨?")
       return
 
    if report_db.check_report(user.id):
