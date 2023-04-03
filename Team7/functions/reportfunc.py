@@ -6,7 +6,7 @@ from Team7.core import Team7Scanner, assistant, user_errors, SCAN_LOGS
 from Team7.database import report_db, scan_db
 
 from pyrogram import filters
-from pyrogram.types import Message, CallbackQuery
+from pyrogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 from pyroaddon import listen
 
 async def cancelled(msg):
@@ -14,10 +14,10 @@ async def cancelled(msg):
         await msg.reply("Cancelled the Process!", quote=True)
         return True
     elif "/restart" in msg.text:
-        await msg.reply("Restarted the Bot!", quote=True)
+        await msg.reply("Restarted!", quote=True)
         return True
     elif msg.text.startswith("/"):
-        await msg.reply("Cancelled the generation process!", quote=True)
+        await msg.reply("Cancelled the process!", quote=True)
         return True
     else:
         return False
@@ -73,7 +73,7 @@ async def report_user_query(T7: Team7Scanner, message: Message):
    report_logs += f"**Proof:** `{proof}`"
    report_db.report_user(report_user.id, user.id)
    await T7.send_message(SCAN_LOGS, report_logs, reply_markup=InlineKeyboardMarkup(report_btn))
-   await T7.send_message(user.id, f"User {report_user.mention} now in report list of Team7-scanner")
+   await T7.send_message(chat.id, f"User {report_user.mention} now in report list of Team7-scanner")
 
 
 @Team7Scanner.on_callback_query(filters.regex(r'report_accept'))
