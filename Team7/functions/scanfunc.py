@@ -9,7 +9,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, 
 from .revertfunc import revertcallpass
 from .check_reason import check_reason
 from .redfunc import passcmd_to_red 
-from .basic import make_tg
+from .basic import make_tg, user_in_res
 
 scan_cmd = """
 /gban {} 
