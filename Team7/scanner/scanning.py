@@ -1,7 +1,7 @@
 """ Team7 || RiZoeL """
 
 import re
-from . import Team7Users
+from . import Team7Users, Owners, Devs
 from Team7.functions import scanpass, revertpass, get_urp, getuser, user_in_res, check_reason, scan_user_query
 from pyrogram import filters, Client
 from pyrogram.types import Message 
@@ -36,3 +36,18 @@ async def revert_user(Team7: Client, message: Message):
     if await user_in_res(message, user.id):
        return
     await revertpass(Team7, message, user)
+
+@Client.on_message(filters.user(Owners) & filters.command(["rmreport", "removereport"], ["!", "?", "/", "."]))
+@Client.on_message(filters.user(Devs) & filters.command(["rmreport", "removereport"], ["!", "?", "/", "."]))
+async def removereport(Team7: Client, message: Message):
+   user = getuser(Team7, message)
+   if not user:
+      return 
+   if await user_in_res(message, user.id):
+      return
+
+   if report_db.check_report(user.id):
+      report_db.rm_report(user.id)
+      await message.reply(f"{user.mention} removed from report list!")
+   else:
+      await message.reply("user not in report list!")
