@@ -72,9 +72,9 @@ async def report_user_query(T7: Team7Scanner, message: Message):
        return
    msg = await T7.send_photo("T7PROOF", proof)
    report_btn = [
-                [ InlineKeyboardButton("• Scan/Accept •", callback_data=f"report_accept:{report_user.id}:{reason_code}:{msg.id}")
+                [ InlineKeyboardButton("• Scan/Accept •", callback_data=f"report:{report_user.id}:{reason_code}:{msg.id}")
                 ], [
-                  InlineKeyboardButton("• Reject Report •", callback_data=f"report_reject")
+                  InlineKeyboardButton("• Reject Report •", callback_data=f"report:reject:{report_user.id}")
                 ],
                 ]
    report_logs = "#REPORT! \n\n"
@@ -87,12 +87,21 @@ async def report_user_query(T7: Team7Scanner, message: Message):
    await T7.send_message(chat.id, f"User {report_user.mention} now in report list of Team7-scanner")
 
 
-@Team7Scanner.on_callback_query(filters.regex(r'report_accept'))
+@Team7Scanner.on_callback_query(filters.regex(r'report'))
 async def scan_callback(T7: Team7Scanner, callback: CallbackQuery):
     query = callback.data.split(":")
     admin = callback.from_user
     message = callback.message
     if users_db.check_owner(admin.id) or users_db.check_dev(admin.id):
+       if query[0] == "reject":
+          user_id = query[1]
+          report_db.rm_report(user_id)
+          try:
+             await callback.edit_message_text(f"**Report Rejected By admin {admin.mention}!**")
+          except Exception:
+             await callback.delete()
+          return        
+       
        user = await T7.get_users(query[0])
        reason = query[1]
        file_id = await T7.get_messages("T7PROOF", query[2])
