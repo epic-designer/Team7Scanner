@@ -1,7 +1,9 @@
 """ © Team7 || RiZoeL """
 
 from Team7.database import users_db as db
-from Team7.core.errors import user_errors 
+from Team7.core import user_errors, Team7Scanner
+from pyrogram.types import Message 
+
 
 def import_owners():
    Owners = []
@@ -37,7 +39,7 @@ def import_members():
       Members.append(x.user_id)
    return Members"""
 
-async def get_urp(T7, message):
+async def get_urp(T7: Team7Scanner, message: Message):
    """ urp = user, reason, proof """
    args = "".join(message.text.split(maxsplit=1)[1:]).split(" ", 2)
    txt = args[1:]
@@ -68,7 +70,7 @@ async def get_urp(T7, message):
    else:
       await message.reply("**Wrong Usage:** Syntax: .scan (user) (ban code only) (single telegraph file/proof link)")
 
-async def getuser(T7, message):
+async def getuser(T7: Team7Scanner, message: Message):
    args = "".join(message.text.split(maxsplit=1)[1:]).split(" ", 1)
    if message.reply_to_message:
       try:
@@ -89,7 +91,7 @@ async def getuser(T7, message):
    else:
       await message.reply("You need to specify an user!")
 
-async def getuser_extra(T7, message):
+async def getuser_extra(T7: Team7Scanner, message: Message):
    args = "".join(message.text.split(maxsplit=1)[1:]).split(" ", 1)
    if message.reply_to_message:
       try:
