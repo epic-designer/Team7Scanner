@@ -70,7 +70,7 @@ async def report_user_query(T7: Team7Scanner, message: Message):
    report_btn = [
                 [ InlineKeyboardButton("• Scan/Accept •", callback_data=f"report_accept:{report_user.id}:{reason_code}:{msg.id}")
                 ], [
-                  InlineKeyboardButton("• Scan/Accept •", callback_data=f"report_reject")
+                  InlineKeyboardButton("• Reject Report •", callback_data=f"report_reject")
                 ],
                 ]
    report_logs = "#REPORT! \n\n"
