@@ -18,7 +18,7 @@ async def itt7(T7, message, user):
 async def seven_info(T7: Client, e: Message):
    """ Info only owner, devs & bot owners can """
    txt = "".join(e.text.split(maxsplit=1)[1:]).split(" ", 1)
-   if e.reply_to_message:
+   if e.reply_to_message and e.reply_to_message.from_user:
       try:
          user = await T7.get_users(e.reply_to_message.from_user.id)
       except:
@@ -35,7 +35,8 @@ async def seven_info(T7: Client, e: Message):
          return
    else:
       try:
-         user = await T7.get_users(e.from_user.id)
+         userid = e.from_user.id
+         user = await T7.get_users(user_ids=userid)
       except:
          try:
             user = e.from_user
