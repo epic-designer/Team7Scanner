@@ -4,7 +4,7 @@ from Team7.database import users_db, scan_db
 from Team7.core import Team7Scanner, assistant, SCAN_LOGS as seven_logs
 
 from pyrogram import filters 
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 
 from .revertfunc import revertcallpass
 from .check_reason import check_reason
@@ -43,7 +43,7 @@ async def scanpass(T7, message, user, reason_code, proof):
          except:
             fail += 1
 
-   final_text = f"User {user.mention} in scan list! \n\n cmd passed to `{done}` bots and failed in `{fail}` bots!"
+   final_text = f"User {user.mention} in scan list! \n\ncmd passed to `{done}` bots and failed in `{fail}` bots!"
    await huh.delete()
    await message.reply(final_text, reply_markup=InlineKeyboardMarkup([
                                  [
@@ -124,6 +124,62 @@ async def scancallpass(T7, callback, user, reason_code, proof):
       except Exception:
           pass
       report_db.rm_report(user.id)
+
+async def cancelled(msg):
+    if "/cancel" in msg.text:
+        await msg.reply("Cancelled the Process!", quote=True)
+        return True
+    elif "/restart" in msg.text:
+        await msg.reply("Restarted!", quote=True)
+        return True
+    elif msg.text.startswith("/"):
+        await msg.reply("Cancelled the process!", quote=True)
+        return True
+    else:
+        return False
+
+async def scan_user_query(T7: Team7Scanner, message: Message):
+   chat = message.chat
+   ask_user = await T7.ask(chat.id, "Gime username or user id of user!", filters=filters.text)
+   if await cancelled(ask_user):
+      return
+   try:
+      scan_user = await T7.get_users(ask_user.text)
+      if await user_in_res(ask_user, scan_user.id):
+         return
+      if report_db.check_report(scan_user.id):
+         await message.reply("user already in report list!")
+         return
+      if scan_db.check_scan(scan_user.id):
+         await message.reply("user already scanned by Team7")
+         return
+   except Exception as eror:
+      if '[400 PEER_ID_INVALID]' in str(eror):
+         await ask_user.repky("Forward any message of user and type /id replying that message! \nThen try again ✓")
+         return
+      error = user_errors(str(eror))
+      await message.reply(str(error))
+   ask_reason = await T7.ask(chat.id, "Now Gime Reason code! Type /bancodes to get all reason codes!", filters.text)
+   if await cancelled(ask_reason):
+      return
+   check_code, _ = check_reason(ask_reason.text)
+   if check_code == "Null":
+      await ask_reason.reply(f"Eh! `{ask_reason.text}` is wrong bancode! Type /bancodes to get all bancodes!")
+      return
+   reason_code = ask_reason.text
+   ask_proof = await T7.ask(chat.id, "Now Gime proof (single telegraph link) or photo", filters.text & filters.media)
+   if await cancelled(ask_proof):
+      return
+   if ask_proof.media:
+      proof = await make_tg(ask_proof)
+   else:
+      pr = ask_proof.text
+      if pr.startswith("https://telegra.ph/file") or pr.startswith("https://telegra.ph") or pr.startswith("https://graph.org") or pr.startswith("https://graph.org/file"):
+         proof = str(pr)
+      else:
+         await ask_proof.reply("need telegraph link as a proof!")
+         return
+   await scanpass(T7, message, scan_user, reason_code, proof)
 
 @Team7Scanner.on_callback_query(filters.regex(r'revert'))
 async def scan_callback(T7: Team7Scanner, callback: CallbackQuery):
