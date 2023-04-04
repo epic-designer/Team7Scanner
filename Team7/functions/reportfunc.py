@@ -70,7 +70,7 @@ async def report_user_query(T7: Team7Scanner, message: Message):
    else:
        await ask_proof.reply("send Telegraph link or photo!")
        return
-   msg = await T7.send_photo("T7PROOF", proof)
+   msg = await T7.send_message("T7PROOF", proof)
    report_btn = [
                 [ InlineKeyboardButton("• Scan/Accept •", callback_data=f"report:{report_user.id}:{reason_code}:{msg.id}")
                 ], [
@@ -105,9 +105,8 @@ async def scan_callback(T7: Team7Scanner, callback: CallbackQuery):
        user_id = int(query[1])
        user = await T7.get_users(user_id)
        reason = query[2]
-       msg_id = int(query[3])
-       file_id = await T7.get_messages("T7PROOF", msg_id)
-       proof = await tg_download(file_id)
-       await scancallpass(T7, callback, user, reason, str(proof))
+       msg = await T7.get_messages("T7PROOF", int(query[3]))
+       proof = str(msg.text)
+       await scancallpass(T7, callback, user, reason, proof)
     else:
        await callback.answer("Only Team7Scanne's Devs can!", show_alert=True) 
