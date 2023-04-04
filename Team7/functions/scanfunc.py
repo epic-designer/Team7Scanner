@@ -85,9 +85,9 @@ async def scanpass(T7, message, user, reason_code, proof):
 async def scancallpass(T7, callback, user, reason_code, proof):
    reason, red7code = check_reason(reason_code)
    if user.username:
-      bancmd = scan_cmd.format(user.username, reason, proof)
+      bancmd = scan_cmd.format(user.username, reason, proof, user.first_name)
    else:
-      bancmd = scan_cmd.format(user.id, reason, proof)
+      bancmd = scan_cmd.format(user.id, reason, proof, user.first_name)
 
    await callback.answer("passing cmd....")
    done = 0
