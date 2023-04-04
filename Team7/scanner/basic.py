@@ -32,7 +32,7 @@ async def alive(_, e: Message):
 @Client.on_message(filters.user(Devs) & filters.command(["restart"], ["!", "?", "/", "."]))
 async def restart(Team7: Client, message: Message):
      reboot_text = "**Re-starting** \n\n__Wait For A While To Use it Again__ "
-     await message.repky(reboot_text)
+     await message.reply(reboot_text)
      try:
          await Team7.disconnect()
      except Exception as e:
