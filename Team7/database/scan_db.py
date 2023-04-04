@@ -7,8 +7,8 @@ class GBan(BASE):
     user_id = Column(String(14), primary_key=True)
     reason = Column(String(127))
 
-    def __init__(self, user_id, reason=""):
-        self.chat_id = user_id
+    def __init__(self, user_id, reason):
+        self.user_id = user_id
         self.reason = reason
 
 
