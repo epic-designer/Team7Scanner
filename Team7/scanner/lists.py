@@ -2,10 +2,11 @@
 import re, io
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from . import Team7Users, Team7logo
+from . import Team7Users
 from Team7.database import scan_db, report_db, users_db as db
 from RiZoeLX.functions import delete_reply
 
+Team7logo = "Team7/Team7Logo.jpg"
 
 @Client.on_message(filters.user(Team7Users) & filters.command(["list"], ["!", "?", "/", "."]))
 async def sevenlist(T7: Client, e: Message):
