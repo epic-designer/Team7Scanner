@@ -7,7 +7,7 @@ from pyrogram.types import Message
 from Team7.functions import itsme, user_in_res, getuser_extra, getuser #user_in_devs, user_in_sudos 
 from . import Team7Users, Owners, Devs
 from Team7.database import users_db as db
-from Team7.core import SEVEN_LOGS
+from Team7.core import SEVEN_LOGS, assistant 
 
 
 @Client.on_message(filters.user(Owners) & filters.command(["adddev"], ["!", "?", "/", "."]))
@@ -41,6 +41,7 @@ async def add_user(T7: Client, message: Message):
       db.add_sudo(user.id, bot.username)
       db.add_bot(bot.id, bot.username)
       await message.reply_text(f"User {user.mention} is successfully added in sudo list 👤-!")
+      await assistant.send_message(bot.username, "/start")
       Logs = "**#NEW SUDO**\n\n"
       Logs += f"**× Admin:** {message.from_user.mention} (`{message.from_user.id}`)\n"
       Logs += f"**× User:** {user.mention} (`{user.id}`) \n"
@@ -63,8 +64,8 @@ async def add_bot(T7: Client, message: Message):
          await message.reply(f"@{bot.username} already in bot list!")
          return
       db.add_bot(bot.id, bot.username)
-      await message.reply(f"User {user.mention} is successfully added in Bot list 🤖 -!")
-
+      await message.reply(f"User {bot.mention} is successfully added in Bot list 🤖 -!")
+      await assistant.send_message(bot.username, "/start")
       Logs = "**#NEW BOT**\n\n"
       Logs += f"**× Admin:** {message.from_user.mention} (`{message.from_user.id}`)\n"
       Logs += f"**× Bot:** @{bot.username} (`{bot.id}`)"
