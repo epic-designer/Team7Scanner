@@ -1,6 +1,6 @@
 """ Team7 || RiZoeL """
 
-import platform 
+import platform, asyncio 
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from Team7.core import start_msg, start_buttons, __version__, Channel, Support 
@@ -33,6 +33,7 @@ async def team7bruh_(_, message: Message):
    final_text = "**Team7 Info** \n"
    final_text += "<===================> \n"
    user = message.from_user
+   await asyncio.sleep(0.4)
    await hui.edit_text("getting user details...")
    final_text += f"  **Your Name:** {user.first_name} \n"
    final_text += f"  **Your ID:** `{user.id}` \n"
@@ -42,20 +43,27 @@ async def team7bruh_(_, message: Message):
       final_text += f"  **Your Rank:** Dev ⚜️ \n"
    else:
       final_text += f"  **Your Rank:** Sudo 〽️ \n"
+   await asyncio.sleep(0.4)
    await hui.edit_text(".....!")
    await hui.edit_text("fetching versions...")
+   await asyncio.sleep(0.6)
    final_text += f"  **Team7-scanner Ver:** `{__version__}` \n"
    final_text += f"  **Python ver:** `{platform.python_version()}` \n"
    final_text += f"  **pyrogram ver:** `{pyro_vr}` \n"
    final_text += f"  **pyRiZoeLX ver:** `{rizoelx_vr}` \n"
    await hui.edit_text("...!...")
+   await asyncio.sleep(0.4)
    await hui.edit_text("checking ping...")
+   await asyncio.sleep(0.5)
    final_text += "<===================> \n\n"
    await hui.edit_text("......")
    final_text += "**Powered By Team7!** \n"
    await hui.edit_text("Team7 is alive....")
+   await asyncio.sleep(0.4)
    await hui.edit_text("Team7 Scanner....")
+   await asyncio.sleep(0.4)
    await hui.edit_text("Ready....")
+   await asyncio.sleep(0.4)
    buttons = [ [
               InlineKeyboardButton(
                     "× Alive", callback_data="alive"),
