@@ -30,7 +30,7 @@ async def scan_user(Team7: Client, message: Message):
 
 @Client.on_message(filters.user(Team7Users) & filters.command(["revert"], ["!", "?", "/", "."]))
 async def revert_user(Team7: Client, message: Message):
-    user = getuser(Team7, message)
+    user = await getuser(Team7, message)
     if not user:
         return 
     if await user_in_res(message, user.id):
@@ -40,7 +40,7 @@ async def revert_user(Team7: Client, message: Message):
 @Client.on_message(filters.user(Owners) & filters.command(["rmreport", "removereport"], ["!", "?", "/", "."]))
 @Client.on_message(filters.user(Devs) & filters.command(["rmreport", "removereport"], ["!", "?", "/", "."]))
 async def removereport(Team7: Client, message: Message):
-   user = getuser(Team7, message)
+   user = await getuser(Team7, message)
    if not user:
       return 
    if await user_in_res(message, user.id):
