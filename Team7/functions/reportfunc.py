@@ -105,7 +105,8 @@ async def scan_callback(T7: Team7Scanner, callback: CallbackQuery):
        user_id = int(query[1])
        user = await T7.get_users(user_id)
        reason = query[2]
-       file_id = await T7.get_messages("T7PROOF", query[3])
+       msg_id = int(query[3])
+       file_id = await T7.get_messages("T7PROOF", msg_id)
        proof = await tg_download(file_id)
        await scancallpass(T7, callback, user, reason, str(proof))
     else:
