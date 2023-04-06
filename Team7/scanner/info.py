@@ -1,10 +1,11 @@
 """ Team7 || RiZoeL """
 
+import asyncio
 from Team7.database import users_db, scan_db, report_db
 from pyrogram import filters, Client
 from pyrogram.types import Message
 from . import Owners
-import asyncio 
+from Team7.functions import check_reason, user_in_res
 
 async def itt7(T7, message, user):
    me = await T7.get_me()
@@ -97,6 +98,39 @@ async def team7_info(T7: Client, message: Message):
    vid = "https://telegra.ph/file/424e60342e214bf267552.mp4"
    await message.reply_video(vid, caption=msg)
    
-   
-   
-   
+@Client.on_message(filters.command(["scancheck", "check"], ["!", "?", "/", "."]))
+async def scan_info(T7: Client, e: Message):
+   """GM"""
+   txt = "".join(e.text.split(maxsplit=1)[1:]).split(" ", 1)
+   if e.reply_to_message and e.reply_to_message.from_user:
+      try:
+         user = await T7.get_users(e.reply_to_message.from_user.id)
+      except:
+         try:
+            user = e.reply_to_message.from_user
+         except Exception as eor:
+            await e.reply(str(eor))
+            return
+   elif txt:
+      try:
+         user = await T7.get_users(txt[0])
+      except Exception as eor:
+         await e.reply(str(eor))
+         return
+   else:
+      try:
+         userid = e.from_user.id
+         user = await T7.get_users(user_ids=userid)
+      except:
+         try:
+            user = e.from_user
+         except Exception as eor:
+            await e.reply(str(eor))
+            return
+   if await user_in_res(user.id)
+      return 
+   if check_scan(user.id):
+      reason = check_reason(check_scan(user.id).reason)
+      await e.reply(f"Yes, User {user.mention} (`{user.if}`) is scanned by Me (Team7Scanner) \n\nReason: `{reason}`")
+   else:
+      await e.reply(f"Nope, {user.mention} not scanned by Team7Scanner")
