@@ -127,7 +127,7 @@ async def scan_info(T7: Client, e: Message):
          except Exception as eor:
             await e.reply(str(eor))
             return
-   if await user_in_res(user.id)
+   if await user_in_res(user.id):
       return 
    if check_scan(user.id):
       reason = check_reason(check_scan(user.id).reason)
