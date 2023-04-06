@@ -127,10 +127,11 @@ async def scan_info(T7: Client, e: Message):
          except Exception as eor:
             await e.reply(str(eor))
             return
+
    if await user_in_res(user.id):
       return 
    if check_scan(user.id):
       reason = check_reason(check_scan(user.id).reason)
-      await e.reply(f"Yes, User {user.mention} (`{user.if}`) is scanned by Me (Team7Scanner) \n\nReason: `{reason}`")
+      await e.reply(f"Yes, User {user.mention} (`{user.id}`) is scanned by Me (Team7Scanner) \n\nReason: `{reason}`")
    else:
       await e.reply(f"Nope, {user.mention} not scanned by Team7Scanner")
