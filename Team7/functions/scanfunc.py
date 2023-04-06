@@ -1,6 +1,6 @@
 """ © Team7 || RiZoeL """
 
-from Team7.database import users_db, scan_db
+from Team7.database import users_db, scan_db, report_db
 from Team7.core import Team7Scanner, assistant, SCAN_LOGS as seven_logs
 
 from pyrogram import filters 
