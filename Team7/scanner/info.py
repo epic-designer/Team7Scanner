@@ -30,14 +30,16 @@ async def seven_info(T7: Client, e: Message):
             return
    elif txt:
       try:
+         if txt[0].isnumeric():
+            await T7.resolve_peer(txt[0])
          user = await T7.get_users(txt[0])
       except Exception as eor:
          await e.reply(str(eor))
          return
    else:
       try:
-         userid = e.from_user.id
-         user = await T7.get_users(user_ids=userid)
+         await T7.resolve_peer(e.from_user.id)
+         user = await T7.get_users(e.from_user.id)
       except:
          try:
             user = e.from_user
@@ -113,13 +115,15 @@ async def scan_info(T7: Client, e: Message):
             return
    elif txt:
       try:
+         if txt [0].isnumeric():
+            await T7.resolve_peer(txt[0])
          user = await T7.get_users(txt[0])
       except Exception as eor:
          await e.reply(str(eor))
          return
    else:
       try:
-         userid = e.from_user.id
+         await T7.resolve_peer(e.from_user.id)
          user = await T7.get_users(user_ids=userid)
       except:
          try:
