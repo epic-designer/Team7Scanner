@@ -130,8 +130,9 @@ async def scan_info(T7: Client, e: Message):
 
    if await user_in_res(e, user.id):
       return 
-   if check_scan(user.id):
-      reason = check_reason(check_scan(user.id).reason)
+   check = scan_db.check_scan(user.id)
+   if check:
+      reason = check_reason(check.reason)
       await e.reply(f"Yes, User {user.mention} (`{user.id}`) is scanned by Me (Team7Scanner) \n\nReason: `{reason}`")
    else:
       await e.reply(f"Nope, {user.mention} not scanned by Team7Scanner")
