@@ -45,6 +45,8 @@ async def get_urp(T7: Team7Scanner, message: Message):
    txt = args[1:]
    if len(txt) == 2:
       try:
+         if args[0].isnumeric():
+            await T7.resolve_peer(args[0])
          user = await T7.get_users(args[0])
       except Exception as error:
          eror = user_errors(str(error))
@@ -87,6 +89,8 @@ async def getuser(T7: Team7Scanner, message: Message):
             return
    elif args:
       try:
+         if args[0].isnumeric():
+            await T7.resolve_peer(args[0])
          user = await T7.get_users(args[0])
       except Exception as error:
          await message.reply(str(error))
@@ -106,6 +110,8 @@ async def getuser_extra(T7: Team7Scanner, message: Message):
             await message.reply(str(eror))
             return
       try:
+         if args[0].isnumeric():
+            await T7.resolve_peer(args[0])
          extra = await T7.get_users(args[0])
       except Exception as er:
          error = user_errors(str(er))
@@ -115,12 +121,16 @@ async def getuser_extra(T7: Team7Scanner, message: Message):
 
    if len(args) == 2:
       try:
+         if args[0].isnumeric():
+            await T7.resolve_peer(args[0])
          user = await T7.get_users(args[0])
       except Exception as eror:
          error = user_errors(str(eror))
          await message.reply(str(error))
          return
       try:
+         if args[0].isnumeric():
+            await T7.resolve_peer(args[1])
          extra = await T7.get_users(args[1])
       except Exception as er:
          error = user_errors(str(er))
