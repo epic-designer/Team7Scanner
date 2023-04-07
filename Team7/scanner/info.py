@@ -128,7 +128,7 @@ async def scan_info(T7: Client, e: Message):
             await e.reply(str(eor))
             return
 
-   if await user_in_res(message, user.id):
+   if await user_in_res(e, user.id):
       return 
    if check_scan(user.id):
       reason = check_reason(check_scan(user.id).reason)
