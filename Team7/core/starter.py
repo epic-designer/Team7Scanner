@@ -1,7 +1,7 @@
 """ Team7 || RiZoeL """
 
 # Imports
-import platform
+import platform, sys
 from pyrogram import idle, __version__ as pyro_vr
 from RiZoeLX import __version__ as rizoelx_vr
 from .version import __version__
@@ -15,6 +15,7 @@ def Start_assistant():
         print("[Team7 INFO]: Scanner Assistant started")
     except Exception as a:
         print(f"[Team7 INFO]: Error {str(a)}")
+        sys.exit()
 
 def StartScanner():
     Start_assistant()
