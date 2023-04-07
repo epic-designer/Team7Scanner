@@ -101,12 +101,12 @@ async def scan_callback(T7: Team7Scanner, callback: CallbackQuery):
           except Exception:
              await callback.delete()
           return
-      
-       user_id = int(query[1])
-       user = await T7.get_users(user_id)
-       reason = query[2]
-       msg = await T7.get_messages("T7PROOF", int(query[3]))
-       proof = str(msg.text)
-       await scancallpass(T7, callback, user, reason, proof)
+       else:
+          user_id = int(query[1])
+          user = await T7.get_users(user_id)
+          reason = query[2]
+          msg = await T7.get_messages("T7PROOF", int(query[3]))
+          proof = str(msg.text)
+          await scancallpass(T7, callback, user, reason, proof)
     else:
        await callback.answer("Only Team7Scanne's Devs can!", show_alert=True) 
