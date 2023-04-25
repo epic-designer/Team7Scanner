@@ -1,8 +1,9 @@
 """ © Team7 RiZoeL """
 import time, datetime
 
+from . import Team7Users
+
 from Team7 import start_time
-from Team7.database import users_db
 from Team7.functions import report_user_query, get_time
 from Team7.core import inline_alive_msg, get_inline_stats
 
@@ -16,12 +17,12 @@ async def T7callbacks(T7: Client, callback_query: CallbackQuery):
    admin = callback_query.from_user
    message = callback_query.message
    if query == "do_report":
-      if users_db.check_owner(admin.id) or users_db.check_dev(admin.id) or users_db.check_sudo(admin.id):
+      if admin.id in Team7Users:
          await callback_query.answer("You have rights to scan!", show_alert=True)
-         return
-      await callback_query.answer("Follow process!", show_alert=True)
-      await callback_query.delete()
-      await report_user_query(T7, message)
+      else:
+         await callback_query.answer("Follow process!", show_alert=True)
+         await callback_query.delete()
+         await report_user_query(T7, message)
 
    elif query == "ping":
       start = datetime.datetime.now()
