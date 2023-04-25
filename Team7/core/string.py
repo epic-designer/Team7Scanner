@@ -12,7 +12,7 @@ from Team7.database import users_db, scan_db, report_db
 from pyrogram.types import InlineKeyboardButton
 
 
-alive_pic = "https://telegra.ph//file/57781115c5b6cc7ea23bc.jpg"
+alive_pic = "Team7/Team7Logo.jpg"
 
 def get_stats():
     stats_msg = "**------ Team7 - Scanner ------**\n\n"
