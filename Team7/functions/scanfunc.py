@@ -26,7 +26,7 @@ async def scanpass(T7, message, user, reason_code, proof):
       await message.reply(f"User {user.mention} already in scan list \nReason: {alreson}")
       return
    if user.username:
-      bancmd = scan_cmd.format(user.username, reason, proof, user.first_name)
+      bancmd = scan_cmd.format(f"@{user.username}", reason, proof, user.first_name)
    else:
       bancmd = scan_cmd.format(user.id, reason, proof, user.first_name)
 
