@@ -34,7 +34,7 @@ class Devs(BASE):
 
 
 class Users(BASE):
-    __tablename__ = "redsudo"
+    __tablename__ = "tsudo"
     user_id = Column(BigInteger, primary_key=True)
     username = Column(UnicodeText)
 
