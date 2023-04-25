@@ -1,0 +1,74 @@
+{
+      "name": "Team7Scanner by RiZoeL",
+      "description": "A Pyrogram Based stable and advance scanner",
+      "logo": "",
+      "keywords": [
+        "telegram",
+        "PYROGRAM",
+        "telegram-bot",
+        "RiZoeL"
+      ],   
+  "repository": "https://github.com/MrRizoel/Team7Scanner",
+  "website": "https://github.com/MrRizoel",
+  "success_url": "https://t.me/TheRiZoeL",
+  "env": {
+      "API_ID": {
+        "description": "Fill Api ID Take this value from My.telegram.org",
+        "value": "",
+        "required": true
+      },
+      "API_HASH": {
+        "description": "Fill Api hash Take this value from My.telegram.org",
+        "value": "",
+        "required": true
+      },
+      "TOKEN": {
+        "description": "Bot Token",
+        "value": "",
+        "required": true
+      },
+      "SESSION": {
+        "description": "Pyrogram v2 String Session",
+        "value": "",
+        "required": false
+      },
+      "DEVS": {
+        "description": "dev users id space by space or leave blank",
+        "value": "",
+        "required": false
+      },
+      "OWNER_IDS": {
+        "description": "Owner's id space by space",
+        "value": "",
+        "required": true
+      },
+      "DB_URL": {
+        "description": "postgresql URL",
+        "value": "",
+        "required": true
+      },
+      "SEVEN_LOGS": {
+        "description": "Logger channel's username",
+        "value": "",
+        "required": true
+      },
+      "SCAN_LOGS": {
+        "description": "Scan log channel's username!",
+        "value": ".",
+        "required": true
+      }
+    },
+    "addons": [
+    {
+      "plan": "heroku-postgresql",
+      "options": {
+        "version": "12"
+      }
+    }
+  ],
+    "buildpacks": [
+        {
+          "url": "heroku/python"
+        }
+    ]
+}
