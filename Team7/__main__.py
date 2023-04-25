@@ -3,7 +3,7 @@ import os, sys, asyncio
 from Team7.core import OWNER_IDS, DEVS, StartScanner
 from Team7.database import users_db
 
-print("[Team7 INFO]: Adding users in db!")
+print("[Team7 INFO]: Adding owners in db!")
 for user_id in OWNER_IDS:
    users_db.add_owner(user_id)
 
