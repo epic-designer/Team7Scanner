@@ -42,7 +42,7 @@ async def report_user_query(T7: Team7Scanner, message: Message):
          return
    except Exception as eror:
       if '[400 PEER_ID_INVALID]' in str(eror):
-         await ask_user.repky("Forward any message of user and type /id replying that message! \nThen try again ✓")
+         await ask_user.reply("Forward any message of user and type /id replying that message! \nThen try again ✓")
          return
       error = user_errors(str(eror))
       await message.reply(str(error))
